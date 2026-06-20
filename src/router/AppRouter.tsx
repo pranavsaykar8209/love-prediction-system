@@ -28,7 +28,6 @@ const AboutWrapper: React.FC = () => {
   return (
     <AboutCalculation 
       onCtaClick={() => navigate('/calculator')} 
-      onHistoryNavigate={() => navigate('/history')}
     />
   );
 };
@@ -46,7 +45,6 @@ const CalculatorWrapper: React.FC = () => {
     <CalculatorForm 
       onHomeNavigate={() => navigate('/')} 
       onSubmit={handleSubmit}
-      onHistoryNavigate={() => navigate('/history')}
     />
   );
 };
@@ -76,7 +74,6 @@ const ResultWrapper: React.FC = () => {
       crushName={crushName}
       onAnalyzeAnother={handleAnalyzeAnother}
       onHomeNavigate={() => navigate('/')}
-      onHistoryNavigate={() => navigate('/history')}
     />
   );
 };

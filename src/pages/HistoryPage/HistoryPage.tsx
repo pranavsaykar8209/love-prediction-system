@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import FloatingHearts from '../../components/FloatingHearts/FloatingHearts';
 import HeartIcon from '../../components/HeartIcon/HeartIcon';
+import PinLock from './PinLock';
+import ConfirmModal from '../../components/ConfirmModal/ConfirmModal';
 import aboutData from '../../data/aboutCalculation.json';
 import styles from './HistoryPage.module.css';
 import type { HistoryPageProps, LoveResultDbRow } from '../../types';
@@ -9,6 +11,9 @@ import { capitalizeName } from '../../utils';
 import { fetchLoveResults, deleteLoveResults } from '../../services/historyService';
 
 const HistoryPage: React.FC<HistoryPageProps> = ({ onHomeNavigate, onCalculateNavigate }) => {
+  // Always require PIN on every visit
+  const [authenticated, setAuthenticated] = useState(false);
+
   const [results, setResults] = useState<LoveResultDbRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,6 +22,8 @@ const HistoryPage: React.FC<HistoryPageProps> = ({ onHomeNavigate, onCalculateNa
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   // Tracks which row's timestamp tooltip is open on mobile
   const [tooltipRowId, setTooltipRowId] = useState<number | null>(null);
+  // Confirm modal state
+  const [confirmModal, setConfirmModal] = useState(false);
 
   // Fetch results on mount
   const loadResults = async () => {
@@ -73,18 +80,18 @@ const HistoryPage: React.FC<HistoryPageProps> = ({ onHomeNavigate, onCalculateNa
   };
 
 
-  // Batch deletion
-  const handleBulkDelete = async () => {
+  // Open confirm modal instead of native confirm dialog
+  const handleBulkDelete = () => {
     if (selectedIds.length === 0) return;
+    setConfirmModal(true);
+  };
 
-    if (!window.confirm(`Are you sure you want to delete the ${selectedIds.length} selected results?`)) {
-      return;
-    }
-
+  // Actual deletion — called when user confirms in modal
+  const performBulkDelete = async () => {
+    setConfirmModal(false);
     try {
       await deleteLoveResults(selectedIds);
-      showToast(`${selectedIds.length} records deleted successfully.`);
-      // Remove deleted items from local state
+      showToast(`${selectedIds.length} record${selectedIds.length > 1 ? 's' : ''} deleted successfully.`);
       setResults((prev) => prev.filter((item) => !selectedIds.includes(item.id)));
       setSelectedIds([]);
     } catch (e) {
@@ -154,6 +161,24 @@ const HistoryPage: React.FC<HistoryPageProps> = ({ onHomeNavigate, onCalculateNa
     filteredResults.every((item) => selectedIds.includes(item.id));
 
   return (
+    <>
+      {/* Confirm delete modal */}
+      <ConfirmModal
+        isOpen={confirmModal}
+        title="Delete Records"
+        message={`Are you sure you want to delete ${selectedIds.length} selected record${selectedIds.length > 1 ? 's' : ''}? This cannot be undone.`}
+        confirmLabel="Delete"
+        cancelLabel="Cancel"
+        danger
+        onConfirm={performBulkDelete}
+        onCancel={() => setConfirmModal(false)}
+      />
+
+      {/* Show PIN lock if not authenticated */}
+      {!authenticated && <PinLock onUnlock={() => setAuthenticated(true)} />}
+
+      {/* History content — hidden (not unmounted) until authenticated */}
+      <div style={{ display: authenticated ? 'block' : 'none' }}>
     <div className={styles.page}>
       {/* Decorative background blobs */}
       <div className={`${styles.blob} ${styles.blobPink}`}></div>
@@ -347,6 +372,8 @@ const HistoryPage: React.FC<HistoryPageProps> = ({ onHomeNavigate, onCalculateNa
         </div>
       </footer>
     </div>
+      </div>
+    </>
   );
 };
 

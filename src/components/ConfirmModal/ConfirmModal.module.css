@@ -1,0 +1,157 @@
+/* Backdrop */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(59, 44, 64, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9000;
+  padding: 20px;
+  animation: backdropIn 0.2s ease forwards;
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Modal card */
+.modal {
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 24px;
+  padding: 36px 32px 28px;
+  box-shadow: 0 24px 64px rgba(255, 75, 130, 0.18);
+  border: 1px solid rgba(255, 192, 203, 0.3);
+  max-width: 380px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  font-family: 'Inter', sans-serif;
+  animation: modalIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.88) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Icon circle */
+.iconWrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.iconDefault {
+  background: rgba(255, 75, 130, 0.1);
+  color: #ff4b82;
+}
+
+.iconDanger {
+  background: rgba(255, 75, 92, 0.1);
+  color: #ff4b5c;
+}
+
+/* Title */
+.title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #3b2c40;
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+/* Message */
+.message {
+  font-size: 0.9rem;
+  color: #705b76;
+  text-align: center;
+  line-height: 1.55;
+  margin: 0 0 28px;
+}
+
+/* Action buttons row */
+.actions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.cancelBtn {
+  flex: 1;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #705b76;
+  background: rgba(245, 240, 248, 0.9);
+  border: 1.5px solid rgba(200, 185, 210, 0.5);
+  border-radius: 12px;
+  padding: 13px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelBtn:hover {
+  background: rgba(235, 225, 242, 0.9);
+  border-color: rgba(162, 85, 235, 0.3);
+  color: #3b2c40;
+}
+
+.confirmBtn {
+  flex: 1;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 13px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.confirmDefault {
+  background: linear-gradient(135deg, #ff4b82 0%, #a255eb 100%);
+  box-shadow: 0 4px 14px rgba(255, 75, 130, 0.3);
+}
+
+.confirmDefault:hover {
+  box-shadow: 0 6px 18px rgba(255, 75, 130, 0.4);
+  transform: translateY(-1px);
+}
+
+.confirmDanger {
+  background: linear-gradient(135deg, #ff4b5c 0%, #d82b40 100%);
+  box-shadow: 0 4px 14px rgba(216, 43, 64, 0.28);
+}
+
+.confirmDanger:hover {
+  box-shadow: 0 6px 18px rgba(216, 43, 64, 0.38);
+  transform: translateY(-1px);
+}
+
+.confirmBtn:active {
+  transform: scale(0.96);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .modal {
+    padding: 28px 20px 22px;
+    border-radius: 20px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
