@@ -1,0 +1,193 @@
+.navbarContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  position: sticky;
+  top: 16px;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 9999px;
+  padding: 10px 24px;
+  box-shadow: 0 8px 30px rgba(255, 182, 193, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.heartIcon {
+  color: #ff4b82;
+  font-size: 1.4rem;
+  line-height: 1;
+  display: inline-block;
+  animation: heartbeat 1.5s infinite;
+}
+
+.logoText {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  background: linear-gradient(135deg, #ff4b82 0%, #904beb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 24px;
+  align-items: center;
+}
+
+.menuItem {
+  margin: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: #5c4a60;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: #ff4b82;
+}
+
+.activeLink {
+  text-decoration: none;
+  color: #ff4b82;
+  font-size: 0.95rem;
+  font-weight: 700;
+  position: relative;
+}
+
+.activeLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ff4b82;
+  border-radius: 2px;
+}
+
+.ctaWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ctaButton {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff4b82 0%, #a255eb 100%);
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 75, 130, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ctaButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 75, 130, 0.4);
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.15); }
+  70% { transform: scale(1); }
+}
+
+/* Tablet responsive styles */
+@media (max-width: 768px) {
+  .navbarContainer {
+    top: 8px;
+    padding: 8px 16px;
+  }
+
+  .navbar {
+    padding: 8px 12px;
+  }
+
+  .logoText {
+    font-size: 1.05rem;
+  }
+
+  .heartIcon {
+    font-size: 1.1rem;
+  }
+
+  .ctaWrapper {
+    gap: 8px;
+  }
+
+  .ctaButton {
+    padding: 8px 12px;
+    font-size: 0.72rem;
+  }
+}
+
+/* Mobile responsive styles */
+@media (max-width: 480px) {
+  .navbarContainer {
+    top: 6px;
+    padding: 6px 8px;
+  }
+
+  .navbar {
+    padding: 6px 8px;
+  }
+
+  .logoText {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .heartIcon {
+    font-size: 0.95rem;
+  }
+
+  .ctaWrapper {
+    gap: 6px;
+  }
+
+  .ctaButton {
+    padding: 6px 10px;
+    font-size: 0.68rem;
+  }
+}
+

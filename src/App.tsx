@@ -1,6 +1,9 @@
+import AboutCalculation from './pages/AboutCalculation';
+
 function App() {
-  return <>Pranav</>;
+  return <AboutCalculation />;
 }
 
 export default App;
+
 

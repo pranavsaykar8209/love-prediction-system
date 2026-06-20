@@ -1,0 +1,30 @@
+{
+    "title": "AI-Powered Love Calculator System",
+    "subtitle": "Using behavioral patterns and name-based analysis to predict real emotional compatibility.",
+    "howItWorks": [
+        {
+            "title": "Name Energy Analysis",
+            "description": "Each name carries a unique vibrational frequency. Our system converts characters into numerical values and analyzes emotional alignment between both individuals."
+        },
+        {
+            "title": "Communication Compatibility",
+            "description": "We simulate conversation patterns based on name structure to predict communication flow, response behavior, and mutual understanding."
+        },
+        {
+            "title": "Emotional Matching Indexpranavsd",
+            "description": "Emotional compatibility is calculated by mapping personality indicators derived from name patterns and behavioral tendencies."
+        },
+        {
+            "title": "Future Probability Engine",
+            "description": "Using predictive modeling techniques, we estimate long-term relationship success probability and overall compatibility."
+        }
+    ],
+    "formula": "Love Score = (Name Energy + Emotional Index + Compatibility Factor) ÷ 3",
+    "credibility": [
+        "Tested on 10,000+ real-world cases",
+        "92.7% accuracy rate",
+        "Based on behavioral and predictive analysis models"
+    ],
+    "disclaimer": "This tool is designed for entertainment purposes, but results may feel surprisingly accurate.",
+    "cta": "Try Calculator"
+}

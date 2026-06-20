@@ -1,0 +1,445 @@
+.page {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #fff3f6 0%, #f4efff 100%);
+  color: #3b2c40;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Background blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blobPink {
+  top: -100px;
+  left: -100px;
+  width: 450px;
+  height: 450px;
+  background: rgba(255, 182, 193, 0.45);
+}
+
+.blobPurple {
+  top: 40%;
+  right: -150px;
+  width: 500px;
+  height: 500px;
+  background: rgba(162, 85, 235, 0.2);
+}
+
+.blobLavender {
+  bottom: -100px;
+  left: 10%;
+  width: 450px;
+  height: 450px;
+  background: rgba(230, 230, 250, 0.6);
+}
+
+/* Floating Hearts */
+.floatingHeart {
+  position: absolute;
+  color: rgba(255, 75, 130, 0.18);
+  font-size: 2rem;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+}
+
+.heart1 {
+  top: 15%;
+  left: 8%;
+  font-size: 2.5rem;
+  animation: floatUp 12s infinite linear;
+}
+
+.heart2 {
+  top: 25%;
+  right: 12%;
+  font-size: 1.8rem;
+  animation: floatUp 15s infinite linear;
+}
+
+.heart3 {
+  bottom: 30%;
+  left: 15%;
+  font-size: 2.2rem;
+  animation: floatUp 14s infinite linear;
+}
+
+.heart4 {
+  bottom: 15%;
+  right: 8%;
+  font-size: 2rem;
+  animation: floatUp 10s infinite linear;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) rotate(15deg) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* Hero Section */
+.heroSection {
+  z-index: 10;
+  padding-top: 60px;
+  padding-bottom: 80px;
+}
+
+.heroContent {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: #ff4b82;
+  margin-bottom: 24px;
+}
+
+.heroHeart {
+  font-size: 1.1rem;
+  animation: pulse 1.5s infinite;
+}
+
+.heroTitle {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 4rem;
+  line-height: 1.15;
+  margin: 0 0 20px 0;
+  background: linear-gradient(135deg, #ff4b82 0%, #7d3deb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.heroSubtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: #5c4a60;
+  margin: 0 0 36px 0;
+  max-width: 650px;
+}
+
+.heroCta {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff4b82 0%, #a255eb 100%);
+  border: none;
+  border-radius: 9999px;
+  padding: 16px 36px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 75, 130, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.heroCta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(255, 75, 130, 0.45);
+}
+
+.ctaHeart {
+  font-size: 1.1rem;
+}
+
+/* 3. Grid for Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 16px;
+}
+
+/* 4. Formula Section */
+.formulaSection {
+  z-index: 10;
+}
+
+.formulaCard {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 0 12px 40px rgba(255, 200, 210, 0.25);
+  border: 1px solid rgba(255, 192, 203, 0.3);
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.visualFormula {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+
+.formulaBubbleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 120px;
+}
+
+.formulaBubble {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff0f3 0%, #f4efff 100%);
+  border: 2px solid rgba(255, 75, 130, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: #ff4b82;
+  box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+}
+
+.formulaBubbleLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #705b76;
+  text-align: center;
+}
+
+.formulaOperator {
+  font-size: 2.2rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  color: #ff4b82;
+  line-height: 1;
+}
+
+.formulaTextContainer {
+  background: #fff0f3;
+  border-radius: 16px;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+  border: 1px dashed rgba(255, 75, 130, 0.35);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.formulaHeart {
+  color: #ff4b82;
+  font-size: 1.1rem;
+}
+
+.formulaText {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ff4b82;
+  margin: 0;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* 5. Credibility Section */
+.credibilityList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.credibilityCard {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 30px rgba(255, 200, 210, 0.15);
+  border: 1px solid rgba(255, 192, 203, 0.25);
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.credibilityCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(144, 75, 235, 0.3);
+}
+
+.credibilityIconWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f4efff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #904beb;
+  flex-shrink: 0;
+  margin-right: 20px;
+  box-shadow: 0 4px 10px rgba(144, 75, 235, 0.1);
+}
+
+.credibilityText {
+  flex: 1;
+}
+
+.credibilityItemTitle {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #3b2c40;
+  margin: 0 0 4px 0;
+}
+
+.credibilityItemDesc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #705b76;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 6. Footer & Disclaimer */
+.footer {
+  padding: 60px 24px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+  position: relative;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.disclaimerContainer {
+  max-width: 700px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  padding: 24px 32px;
+  box-shadow: 0 8px 30px rgba(255, 200, 210, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+
+.disclaimerTitle {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ff4b82;
+  margin: 0 8px;
+}
+
+.disclaimerIcon {
+  color: #ff8da1;
+  font-size: 0.9rem;
+}
+
+.disclaimerText {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #8d7993;
+  line-height: 1.6;
+  margin: 12px 0 0 0;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.6rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.05rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .formulaCard {
+    padding: 24px 16px;
+  }
+
+  .formulaBubbleWrapper {
+    min-width: 100px;
+  }
+
+  .formulaBubble {
+    width: 60px;
+    height: 60px;
+    font-size: 1.3rem;
+  }
+
+  .formulaOperator {
+    font-size: 1.8rem;
+  }
+
+  .formulaTextContainer {
+    padding: 14px 16px;
+    margin-top: 28px;
+  }
+
+  .formulaText {
+    font-size: 1rem;
+  }
+
+  .credibilityCard {
+    padding: 16px 20px;
+  }
+
+  .credibilityIconWrapper {
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+  }
+}
