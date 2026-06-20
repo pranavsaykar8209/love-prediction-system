@@ -9,6 +9,7 @@ const Navbar: React.FC<NavbarProps> = ({
   onCtaClick,
   showNavLinks = true
 }) => {
+  const isHome = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
 
   return (
     <nav className={styles.navbarContainer}>
@@ -32,14 +33,30 @@ const Navbar: React.FC<NavbarProps> = ({
 
         {/* Right: CTA Buttons */}
         <div className={styles.ctaWrapper}>
-          {showNavLinks && (
-            <a href="/#how-it-works" className={styles.ctaButton}>
-              How It Works
-            </a>
-          )}
-          <button className={styles.ctaButton} onClick={onCtaClick}>
-            {ctaText}
-          </button>
+          {/* Desktop/Web view (hidden on mobile via CSS) */}
+          <div className={styles.desktopCta}>
+            {showNavLinks && (
+              <a href="/#how-it-works" className={styles.ctaButton}>
+                How It Works
+              </a>
+            )}
+            <button className={styles.ctaButton} onClick={onCtaClick}>
+              {ctaText}
+            </button>
+          </div>
+
+          {/* Mobile view (hidden on desktop via CSS) */}
+          <div className={styles.mobileCta}>
+            {isHome ? (
+              <button className={styles.ctaButton} onClick={onCtaClick}>
+                Try Calculator
+              </button>
+            ) : (
+              <a href="/#how-it-works" className={styles.ctaButton}>
+                How It Works
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </nav>

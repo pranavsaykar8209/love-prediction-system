@@ -142,8 +142,10 @@ const AboutCalculation: React.FC<AboutCalculationProps> = ({ onCtaClick }) => {
 
           {/* Prominent Formula Text display */}
           <div className={styles.formulaTextContainer}>
-            <HeartIcon className={styles.formulaHeart} />
-            <p className={styles.formulaText}>{aboutData.formula}</p>
+            <p className={styles.formulaText}>
+              <HeartIcon className={styles.formulaHeart} style={{ marginRight: '8px' }} />
+              {aboutData.formula}
+            </p>
           </div>
         </div>
       </Section>
