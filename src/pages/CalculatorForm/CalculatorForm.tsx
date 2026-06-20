@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
+import FloatingHearts from '../../components/FloatingHearts/FloatingHearts';
 import formData from '../../data/calculatorForm.json';
 import aboutData from '../../data/aboutCalculation.json';
 import styles from './CalculatorForm.module.css';
@@ -37,10 +38,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({ onHomeNavigate, onSubmi
       <div className={`${styles.blob} ${styles.blobLavender}`}></div>
 
       {/* Floating hearts */}
-      <div className={`${styles.floatingHeart} ${styles.heart1}`}>♥</div>
-      <div className={`${styles.floatingHeart} ${styles.heart2}`}>♥</div>
-      <div className={`${styles.floatingHeart} ${styles.heart3}`}>♥</div>
-      <div className={`${styles.floatingHeart} ${styles.heart4}`}>♥</div>
+      <FloatingHearts count={10} />
 
       {/* Navbar with logo click navigating home and CTA text navigating home */}
       <Navbar 

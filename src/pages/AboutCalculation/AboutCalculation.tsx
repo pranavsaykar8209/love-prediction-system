@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Section from '../../components/Section/Section';
 import Card from '../../components/Card/Card';
+import FloatingHearts from '../../components/FloatingHearts/FloatingHearts';
 import aboutData from '../../data/aboutCalculation.json';
 import styles from './AboutCalculation.module.css';
 import type { AboutCalculationProps } from '../../types';
@@ -68,10 +69,7 @@ const AboutCalculation: React.FC<AboutCalculationProps> = ({ onCtaClick }) => {
       <div className={`${styles.blob} ${styles.blobLavender}`}></div>
 
       {/* Floating hearts */}
-      <div className={`${styles.floatingHeart} ${styles.heart1}`}>♥</div>
-      <div className={`${styles.floatingHeart} ${styles.heart2}`}>♥</div>
-      <div className={`${styles.floatingHeart} ${styles.heart3}`}>♥</div>
-      <div className={`${styles.floatingHeart} ${styles.heart4}`}>♥</div>
+      <FloatingHearts count={25} />
 
       {/* 1. Navbar */}
       <Navbar 

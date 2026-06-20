@@ -29,13 +29,18 @@ export const getLocalFallbackResult = (
   if (generatedData && typeof generatedData.score === 'number') {
     score = generatedData.score;
   } else {
-    // Generate a deterministic score between 70 and 100 based on the name pair
+    // Check if either name contains the substring 'pranav' (case-insensitive, as names are already normalized to lowercase)
+    const hasPranav = normalizedYourName.includes('pranav') || normalizedCrushName.includes('pranav');
+    const minScore = hasPranav ? 95 : 70;
+    const maxScore = 100;
+
+    // Generate a deterministic score based on the name pair
     const key = `${normalizedYourName}:${normalizedCrushName}`;
     let hash = 0;
     for (let i = 0; i < key.length; i++) {
       hash = key.charCodeAt(i) + ((hash << 5) - hash);
     }
-    score = Math.floor(Math.abs(hash) % (100 - 70 + 1)) + 70;
+    score = Math.floor(Math.abs(hash) % (maxScore - minScore + 1)) + minScore;
   }
 
   const { message, paragraph } = getRandomText(score);
@@ -96,10 +101,16 @@ export const getOrCreateLoveResult = (
       }
 
       // 2. POST: No record exists, insert a new one in its dedicated file
-      // Generate a random score between 70 and 100 if score not already pre-provided
-      const score = generatedData && typeof generatedData.score === 'number'
-        ? generatedData.score
-        : Math.floor(Math.random() * (100 - 70 + 1)) + 70;
+      // Generate a random score if score not already pre-provided
+      let score: number;
+      if (generatedData && typeof generatedData.score === 'number') {
+        score = generatedData.score;
+      } else {
+        const hasPranav = normalizedYourName.includes('pranav') || normalizedCrushName.includes('pranav');
+        const minScore = hasPranav ? 95 : 70;
+        const maxScore = 100;
+        score = Math.floor(Math.random() * (maxScore - minScore + 1)) + minScore;
+      }
 
       const newRecord = await storeNewResult(normalizedYourName, normalizedCrushName, score);
 

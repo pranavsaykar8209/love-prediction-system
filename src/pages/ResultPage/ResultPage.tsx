@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
+import FloatingHearts from '../../components/FloatingHearts/FloatingHearts';
 import config from '../../data/analysisResultConfig.json';
 import aboutData from '../../data/aboutCalculation.json';
 import styles from './ResultPage.module.css';
@@ -145,10 +146,7 @@ const ResultPage: React.FC<ResultPageProps> = ({
       <div className={`${styles.blob} ${styles.blobLavender}`}></div>
 
       {/* Floating hearts */}
-      <div className={`${styles.floatingHeart} ${styles.heart1}`}>♥</div>
-      <div className={`${styles.floatingHeart} ${styles.heart2}`}>♥</div>
-      <div className={`${styles.floatingHeart} ${styles.heart3}`}>♥</div>
-      <div className={`${styles.floatingHeart} ${styles.heart4}`}>♥</div>
+      <FloatingHearts count={10} />
 
       {/* Navbar */}
       <Navbar 

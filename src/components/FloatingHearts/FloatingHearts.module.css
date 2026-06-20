@@ -1,0 +1,221 @@
+.floatingHeart {
+  position: absolute;
+  color: rgba(255, 75, 130, 0.32);
+  font-size: 2rem;
+  pointer-events: none;
+  z-index: -1;
+  user-select: none;
+}
+
+.heart1 {
+  top: 8%;
+  left: 6%;
+  font-size: 2.5rem;
+  animation: floatUp 12s infinite linear;
+}
+
+.heart2 {
+  top: 6%;
+  right: 8%;
+  font-size: 1.8rem;
+  animation: floatUp 15s infinite linear;
+}
+
+.heart3 {
+  top: 20%;
+  left: 12%;
+  font-size: 2.2rem;
+  animation: floatUp 14s infinite linear;
+}
+
+.heart4 {
+  top: 12%;
+  right: 15%;
+  font-size: 2rem;
+  animation: floatUp 10s infinite linear;
+}
+
+.heart5 {
+  top: 32%;
+  left: 3%;
+  font-size: 1.5rem;
+  animation: floatUp 18s infinite linear;
+  animation-delay: -2s;
+}
+
+.heart6 {
+  top: 38%;
+  right: 9%;
+  font-size: 2.4rem;
+  animation: floatUp 16s infinite linear;
+  animation-delay: -5s;
+}
+
+.heart7 {
+  top: 44%;
+  left: 14%;
+  font-size: 1.2rem;
+  animation: floatUp 20s infinite linear;
+  animation-delay: -3s;
+}
+
+.heart8 {
+  top: 50%;
+  right: 7%;
+  font-size: 1.7rem;
+  animation: floatUp 13s infinite linear;
+  animation-delay: -7s;
+}
+
+.heart9 {
+  top: 56%;
+  left: 8%;
+  font-size: 2.1rem;
+  animation: floatUp 17s infinite linear;
+  animation-delay: -1s;
+}
+
+.heart10 {
+  top: 62%;
+  right: 12%;
+  font-size: 1.4rem;
+  animation: floatUp 11s infinite linear;
+  animation-delay: -4s;
+}
+
+.heart11 {
+  top: 68%;
+  left: 5%;
+  font-size: 1.8rem;
+  animation: floatUp 15s infinite linear;
+  animation-delay: -3s;
+}
+
+.heart12 {
+  top: 74%;
+  right: 6%;
+  font-size: 2.2rem;
+  animation: floatUp 12s infinite linear;
+  animation-delay: -6s;
+}
+
+.heart13 {
+  top: 80%;
+  left: 11%;
+  font-size: 1.4rem;
+  animation: floatUp 17s infinite linear;
+  animation-delay: -9s;
+}
+
+.heart14 {
+  top: 86%;
+  right: 10%;
+  font-size: 2.0rem;
+  animation: floatUp 14s infinite linear;
+  animation-delay: -12s;
+}
+
+.heart15 {
+  top: 92%;
+  left: 4%;
+  font-size: 1.6rem;
+  animation: floatUp 19s infinite linear;
+  animation-delay: -4s;
+}
+
+.heart16 {
+  top: 95%;
+  right: 8%;
+  font-size: 2.3rem;
+  animation: floatUp 11s infinite linear;
+  animation-delay: -8s;
+}
+
+.heart17 {
+  top: 17%;
+  left: 8%;
+  font-size: 1.3rem;
+  animation: floatUp 16s infinite linear;
+  animation-delay: -2s;
+}
+
+.heart18 {
+  top: 18%;
+  right: 5%;
+  font-size: 2.5rem;
+  animation: floatUp 13s infinite linear;
+  animation-delay: -5s;
+}
+
+.heart19 {
+  top: 41%;
+  left: 10%;
+  font-size: 1.1rem;
+  animation: floatUp 18s infinite linear;
+  animation-delay: -11s;
+}
+
+.heart20 {
+  top: 53%;
+  right: 5%;
+  font-size: 1.9rem;
+  animation: floatUp 14s infinite linear;
+  animation-delay: -1s;
+}
+
+.heart21 {
+  top: 65%;
+  left: 7%;
+  font-size: 1.5rem;
+  animation: floatUp 20s infinite linear;
+  animation-delay: -7s;
+}
+
+.heart22 {
+  top: 77%;
+  right: 14%;
+  font-size: 2.4rem;
+  animation: floatUp 15s infinite linear;
+  animation-delay: -10s;
+}
+
+.heart23 {
+  top: 83%;
+  left: 13%;
+  font-size: 1.7rem;
+  animation: floatUp 13s infinite linear;
+  animation-delay: -4s;
+}
+
+.heart24 {
+  top: 89%;
+  right: 3%;
+  font-size: 2.2rem;
+  animation: floatUp 16s infinite linear;
+  animation-delay: -8s;
+}
+
+.heart25 {
+  top: 97%;
+  left: 9%;
+  font-size: 1.2rem;
+  animation: floatUp 12s infinite linear;
+  animation-delay: -3s;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) rotate(15deg) scale(1.1);
+    opacity: 0;
+  }
+}
