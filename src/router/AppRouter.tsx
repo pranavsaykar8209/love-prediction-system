@@ -73,7 +73,7 @@ const ResultWrapper: React.FC = () => {
   );
 };
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: '/',
     element: <AboutWrapper />,

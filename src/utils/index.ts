@@ -1,1 +1,7 @@
-export { capitalizeName, getFormulaComponents, getAbbreviation } from './helpers';
+export {
+  capitalizeName,
+  getFormulaComponents,
+  getAbbreviation,
+  normalizeAndSortNames,
+  getRandomText,
+} from './helpers';

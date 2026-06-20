@@ -184,7 +184,6 @@
   /* Fallback in case SVG gradients have issues rendering */
   stroke: #ff4b82; 
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.1s linear;
 }
 
 /* Add SVG gradients manually inside ResultPage structure, or fallback to CSS filter/gradients */

@@ -5,6 +5,7 @@ import aboutData from '../../data/aboutCalculation.json';
 import styles from './ResultPage.module.css';
 import type { ResultPageProps } from '../../types';
 import { capitalizeName } from '../../utils';
+import { getOrCreateLoveResult } from '../../services/supabaseService';
 
 const ResultPage: React.FC<ResultPageProps> = ({
   yourName,
@@ -20,40 +21,36 @@ const ResultPage: React.FC<ResultPageProps> = ({
   const [selectedMessage, setSelectedMessage] = useState('');
   const [selectedParagraph, setSelectedParagraph] = useState('');
 
-  // 1. Reset and initialization effect
-  useEffect(() => {
-    if (isLoading) {
-      setProgress(0);
-      setLoadingMessageIndex(0);
-      setDisplayScore(0);
-
-      // Generate random score between 70 and 100
-      const randomScore = Math.floor(Math.random() * (100 - 70 + 1)) + 70;
-      
-      // Find matching range based on score
-      const matchingRange = config.scoreRanges.find(
-        (range) => randomScore >= range.min && randomScore <= range.max
-      );
-
-      if (matchingRange) {
-        // Randomly pick one message and paragraph
-        const msg = matchingRange.messages[Math.floor(Math.random() * matchingRange.messages.length)];
-        const para = matchingRange.paragraphs[Math.floor(Math.random() * matchingRange.paragraphs.length)];
-        setScore(randomScore);
-        setSelectedMessage(msg);
-        setSelectedParagraph(para);
-      }
-    }
-  }, [isLoading]);
-
-  // 2. Loading progress effect (smooth requestAnimationFrame progress bar)
+  // 1. Unified initialization, Supabase fetching, and loading progress effect
   useEffect(() => {
     if (!isLoading) return;
 
+    let isMounted = true;
+    let dataFinished = false;
+    let timerFinished = false;
+    let fetchedResult: { score: number; message: string; paragraph: string } | null = null;
+
+    // Fetch or create compatibility result from Supabase
+    getOrCreateLoveResult(yourName, crushName)
+      .then((res) => {
+        if (!isMounted) return;
+        fetchedResult = res;
+        dataFinished = true;
+        checkReveal();
+      })
+      .catch((error) => {
+        console.error('Failed to get or create love result:', error);
+        if (!isMounted) return;
+        dataFinished = true;
+        checkReveal();
+      });
+
+    // Loading progress animation (minimum 3.5 seconds)
     const startTime = Date.now();
-    const duration = 3500; // 3.5 seconds loading state
+    const duration = 5000;
 
     const updateProgress = () => {
+      if (!isMounted) return;
       const elapsed = Date.now() - startTime;
       const currentProgress = Math.min((elapsed / duration) * 100, 100);
       setProgress(currentProgress);
@@ -61,13 +58,31 @@ const ResultPage: React.FC<ResultPageProps> = ({
       if (elapsed < duration) {
         requestAnimationFrame(updateProgress);
       } else {
-        setIsLoading(false);
+        timerFinished = true;
+        checkReveal();
       }
     };
 
     const animFrame = requestAnimationFrame(updateProgress);
-    return () => cancelAnimationFrame(animFrame);
-  }, [isLoading]);
+
+    const checkReveal = () => {
+      if (dataFinished && timerFinished) {
+        if (isMounted) {
+          if (fetchedResult) {
+            setScore(fetchedResult.score);
+            setSelectedMessage(fetchedResult.message);
+            setSelectedParagraph(fetchedResult.paragraph);
+          }
+          setIsLoading(false);
+        }
+      }
+    };
+
+    return () => {
+      isMounted = false;
+      cancelAnimationFrame(animFrame);
+    };
+  }, [isLoading, yourName, crushName]);
 
   // 3. Cycle loading messages every 1.5 seconds
   useEffect(() => {
@@ -108,6 +123,9 @@ const ResultPage: React.FC<ResultPageProps> = ({
   }, [isLoading, score]);
 
   const handleLocalTryAgain = () => {
+    setProgress(0);
+    setLoadingMessageIndex(0);
+    setDisplayScore(0);
     setIsLoading(true);
   };
 
@@ -116,6 +134,8 @@ const ResultPage: React.FC<ResultPageProps> = ({
   const strokeWidth = 6;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
+
+
 
   return (
     <div className={styles.page}>
@@ -159,8 +179,10 @@ const ResultPage: React.FC<ResultPageProps> = ({
                     cy="65"
                     r={radius}
                     strokeWidth={strokeWidth}
-                    strokeDasharray={circumference}
-                    strokeDashoffset={strokeDashoffset}
+                    style={{
+                      strokeDasharray: circumference,
+                      strokeDashoffset: strokeDashoffset,
+                    }}
                   />
                 </svg>
                 <div className={styles.loaderHeart}>♥</div>
