@@ -1,0 +1,353 @@
+import React, { useState, useEffect } from 'react';
+import Navbar from '../../components/Navbar/Navbar';
+import FloatingHearts from '../../components/FloatingHearts/FloatingHearts';
+import HeartIcon from '../../components/HeartIcon/HeartIcon';
+import aboutData from '../../data/aboutCalculation.json';
+import styles from './HistoryPage.module.css';
+import type { HistoryPageProps, LoveResultDbRow } from '../../types';
+import { capitalizeName } from '../../utils';
+import { fetchLoveResults, deleteLoveResults } from '../../services/historyService';
+
+const HistoryPage: React.FC<HistoryPageProps> = ({ onHomeNavigate, onCalculateNavigate }) => {
+  const [results, setResults] = useState<LoveResultDbRow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeFilter, setActiveFilter] = useState('');
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  // Tracks which row's timestamp tooltip is open on mobile
+  const [tooltipRowId, setTooltipRowId] = useState<number | null>(null);
+
+  // Fetch results on mount
+  const loadResults = async () => {
+    setLoading(true);
+    try {
+      const data = await fetchLoveResults();
+      setResults(data);
+    } catch (error) {
+      console.error('Error loading history:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadResults();
+  }, []);
+
+  // Dismiss the score tooltip when clicking/tapping outside the score cell
+  useEffect(() => {
+    if (tooltipRowId === null) return;
+    const dismiss = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(`.${styles.scoreCell}`)) {
+        setTooltipRowId(null);
+      }
+    };
+    document.addEventListener('mousedown', dismiss);
+    document.addEventListener('touchstart', dismiss);
+    return () => {
+      document.removeEventListener('mousedown', dismiss);
+      document.removeEventListener('touchstart', dismiss);
+    };
+  }, [tooltipRowId]);
+
+  // Show a brief toast message on actions
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    setTimeout(() => {
+      setToastMessage(null);
+    }, 3000);
+  };
+
+  // Perform search / filter application
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setActiveFilter(searchTerm.trim().toLowerCase());
+  };
+
+  // Clear search input & active filter
+  const handleClearSearch = () => {
+    setSearchTerm('');
+    setActiveFilter('');
+  };
+
+
+  // Batch deletion
+  const handleBulkDelete = async () => {
+    if (selectedIds.length === 0) return;
+
+    if (!window.confirm(`Are you sure you want to delete the ${selectedIds.length} selected results?`)) {
+      return;
+    }
+
+    try {
+      await deleteLoveResults(selectedIds);
+      showToast(`${selectedIds.length} records deleted successfully.`);
+      // Remove deleted items from local state
+      setResults((prev) => prev.filter((item) => !selectedIds.includes(item.id)));
+      setSelectedIds([]);
+    } catch (e) {
+      console.error(e);
+      showToast('Failed to delete selected records.');
+    }
+  };
+
+  // Select all or deselect all checkbox action
+  const handleSelectAllChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      // Select all currently filtered results
+      const filteredIds = filteredResults.map((item) => item.id);
+      setSelectedIds(filteredIds);
+    } else {
+      setSelectedIds([]);
+    }
+  };
+
+  // Select/deselect a single row checkbox
+  const handleRowSelectChange = (id: number, checked: boolean) => {
+    if (checked) {
+      setSelectedIds((prev) => [...prev, id]);
+    } else {
+      setSelectedIds((prev) => prev.filter((selectedId) => selectedId !== id));
+    }
+  };
+
+  // Toggle timestamp tooltip on mobile score tap
+  const handleScoreTap = (id: number) => {
+    setTooltipRowId((prev) => (prev === id ? null : id));
+  };
+
+  // Filter logic: match search query against your_name + crush_name.
+  // Splits by spaces so order of names in filter query (e.g. "Juliet Romeo") doesn't matter.
+  const filteredResults = results.filter((item) => {
+    if (!activeFilter) return true;
+    const yourName = item.your_name.toLowerCase();
+    const crushName = item.crush_name.toLowerCase();
+    const queryWords = activeFilter.split(/\s+/).filter(Boolean);
+    return queryWords.every((word) => yourName.includes(word) || crushName.includes(word));
+  });
+
+  // Helper to format date
+  const formatDate = (isoString: string): string => {
+    if (!isoString) return 'Unknown Time';
+    const date = new Date(isoString);
+    if (isNaN(date.getTime())) return 'Unknown Time';
+    return date.toLocaleDateString(undefined, {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  };
+
+  // Helper to color code compatibility score ranges
+  const getScoreClass = (score: number): string => {
+    if (score >= 90) return styles.scoreHigh;
+    if (score >= 70) return styles.scoreMedium;
+    return styles.scoreLow;
+  };
+
+  const isAllSelected =
+    filteredResults.length > 0 &&
+    filteredResults.every((item) => selectedIds.includes(item.id));
+
+  return (
+    <div className={styles.page}>
+      {/* Decorative background blobs */}
+      <div className={`${styles.blob} ${styles.blobPink}`}></div>
+      <div className={`${styles.blob} ${styles.blobPurple}`}></div>
+      <div className={`${styles.blob} ${styles.blobLavender}`}></div>
+
+      {/* Floating hearts */}
+      <FloatingHearts count={15} />
+
+      {/* Navbar */}
+      <Navbar 
+        ctaText="Try Calculator" 
+        onCtaClick={onCalculateNavigate} 
+        onLogoClick={onHomeNavigate} 
+        showNavLinks={true}
+      />
+
+      {/* Toast Alert */}
+      {toastMessage && (
+        <div className={styles.toast}>
+          <HeartIcon className={styles.toastIcon} />
+          <span>{toastMessage}</span>
+        </div>
+      )}
+
+      {/* Main Container */}
+      <main className={styles.container}>
+        <div className={styles.card}>
+          <div className={styles.cardHeader}>
+            <div className={styles.cardBadge}>
+              <HeartIcon className={styles.badgeHeart} />
+              <span>COMPATIBILITY ARCHIVES</span>
+              <HeartIcon className={styles.badgeHeart} />
+            </div>
+            <h1 className={styles.title}>Match History</h1>
+            <p className={styles.subtitle}>
+              Browse through previously calculated compatibility calculations.
+            </p>
+          </div>
+
+          {/* Search/Filter and Bulk Actions Bar */}
+          <div className={styles.actionBar}>
+            <form onSubmit={handleSearchSubmit} className={styles.searchForm}>
+              <div className={styles.searchContainer}>
+                <input
+                  type="text"
+                  placeholder="Filter by Name..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className={styles.searchInput}
+                />
+                {searchTerm && (
+                  <button
+                    type="button"
+                    onClick={handleClearSearch}
+                    className={styles.clearButton}
+                    title="Clear filter"
+                  >
+                    &times;
+                  </button>
+                )}
+              </div>
+              <button type="submit" className={styles.searchButton}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                Search
+              </button>
+            </form>
+
+            {/* Bulk Delete button (Only visible if 1+ rows are selected) */}
+            {selectedIds.length > 0 && (
+              <button 
+                onClick={handleBulkDelete} 
+                className={styles.bulkDeleteButton}
+                title="Delete selected records"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
+                  <polyline points="3 6 5 6 21 6" />
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                  <line x1="10" y1="11" x2="10" y2="17" />
+                  <line x1="14" y1="11" x2="14" y2="17" />
+                </svg>
+                Delete Selected ({selectedIds.length})
+              </button>
+            )}
+          </div>
+
+          {/* Table Container */}
+          <div className={styles.tableWrapper}>
+            {loading ? (
+              <div className={styles.loadingSpinner}>
+                <div className={styles.spinner}></div>
+                <p>Retrieving archives...</p>
+              </div>
+            ) : filteredResults.length === 0 ? (
+              <div className={styles.emptyState}>
+                <HeartIcon className={styles.emptyHeart} />
+                <h3>No records found</h3>
+                <p>
+                  {activeFilter
+                    ? 'No compatibility records match your search filter.'
+                    : 'There are no calculations stored yet. Launch a new love calculation!'}
+                </p>
+                {activeFilter ? (
+                  <button onClick={handleClearSearch} className={styles.emptyButton}>
+                    Clear Filter
+                  </button>
+                ) : (
+                  <button onClick={onCalculateNavigate} className={styles.emptyButton}>
+                    Calculate Love Match
+                  </button>
+                )}
+              </div>
+            ) : (
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th className={styles.colCheck}>
+                      <label className={styles.checkboxContainer}>
+                        <input
+                          type="checkbox"
+                          checked={isAllSelected}
+                          onChange={handleSelectAllChange}
+                        />
+                        <span className={styles.checkmark}></span>
+                      </label>
+                    </th>
+                    <th className={styles.colMatch}>Crush Match</th>
+                    <th className={styles.colScore}>Score</th>
+                    <th className={styles.colTime}>Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredResults.map((row) => {
+                    const isSelected = selectedIds.includes(row.id);
+                    return (
+                      <tr key={row.id} className={isSelected ? styles.rowSelected : undefined}>
+                        <td className={styles.colCheck}>
+                          <label className={styles.checkboxContainer}>
+                            <input
+                              type="checkbox"
+                              checked={isSelected}
+                              onChange={(e) => handleRowSelectChange(row.id, e.target.checked)}
+                            />
+                            <span className={styles.checkmark}></span>
+                          </label>
+                        </td>
+                        <td className={styles.colMatch}>
+                          <div className={styles.matchNames}>
+                            <span className={styles.name}>{capitalizeName(row.your_name)}</span>
+                            <span className={styles.heartConnector}>❤️</span>
+                            <span className={styles.name}>{capitalizeName(row.crush_name)}</span>
+                          </div>
+                        </td>
+                        <td className={styles.colScore}>
+                          <div
+                            className={styles.scoreCell}
+                            onClick={() => handleScoreTap(row.id)}
+                          >
+                            <span className={`${styles.scoreBadge} ${getScoreClass(row.score)}`}>
+                              {row.score}%
+                            </span>
+                            {/* Timestamp tooltip — mobile only */}
+                            {tooltipRowId === row.id && (
+                              <div className={styles.scoreTooltip}>
+                                🕐 {formatDate(row.created_at)}
+                              </div>
+                            )}
+                          </div>
+                        </td>
+                        <td className={styles.colTime}>{formatDate(row.created_at)}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className={styles.footer}>
+        <div className={styles.disclaimerContainer}>
+          <HeartIcon className={styles.disclaimerIcon} />
+          <span className={styles.disclaimerTitle}>Disclaimer</span>
+          <HeartIcon className={styles.disclaimerIcon} />
+          <p className={styles.disclaimerText}>{aboutData.disclaimer}</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default HistoryPage;

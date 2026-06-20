@@ -7,7 +7,7 @@ import aboutData from '../../data/aboutCalculation.json';
 import styles from './CalculatorForm.module.css';
 import type { CalculatorFormProps, FormInputConfig } from '../../types';
 
-const CalculatorForm: React.FC<CalculatorFormProps> = ({ onHomeNavigate, onSubmit }) => {
+const CalculatorForm: React.FC<CalculatorFormProps> = ({ onHomeNavigate, onSubmit, onHistoryNavigate }) => {
   // Initialize state based on JSON input configuration dynamically
   const initialValues = formData.inputs.reduce((acc, input) => {
     acc[input.name] = '';
@@ -46,6 +46,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({ onHomeNavigate, onSubmi
         ctaText="Back to Home" 
         onCtaClick={onHomeNavigate} 
         onLogoClick={onHomeNavigate} 
+        onHistoryClick={onHistoryNavigate}
       />
 
       {/* Main Content Area */}

@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider, Navigate, useNavigate, useLocation
 import AboutCalculation from '../pages/AboutCalculation/AboutCalculation';
 import CalculatorForm from '../pages/CalculatorForm/CalculatorForm';
 import ResultPage from '../pages/ResultPage/ResultPage';
+import HistoryPage from '../pages/HistoryPage/HistoryPage';
 
 const AboutWrapper: React.FC = () => {
   const navigate = useNavigate();
@@ -24,7 +25,12 @@ const AboutWrapper: React.FC = () => {
     return () => window.removeEventListener('hashchange', handleScroll);
   }, []);
 
-  return <AboutCalculation onCtaClick={() => navigate('/calculator')} />;
+  return (
+    <AboutCalculation 
+      onCtaClick={() => navigate('/calculator')} 
+      onHistoryNavigate={() => navigate('/history')}
+    />
+  );
 };
 
 const CalculatorWrapper: React.FC = () => {
@@ -40,6 +46,7 @@ const CalculatorWrapper: React.FC = () => {
     <CalculatorForm 
       onHomeNavigate={() => navigate('/')} 
       onSubmit={handleSubmit}
+      onHistoryNavigate={() => navigate('/history')}
     />
   );
 };
@@ -69,6 +76,17 @@ const ResultWrapper: React.FC = () => {
       crushName={crushName}
       onAnalyzeAnother={handleAnalyzeAnother}
       onHomeNavigate={() => navigate('/')}
+      onHistoryNavigate={() => navigate('/history')}
+    />
+  );
+};
+
+const HistoryWrapper: React.FC = () => {
+  const navigate = useNavigate();
+  return (
+    <HistoryPage
+      onHomeNavigate={() => navigate('/')}
+      onCalculateNavigate={() => navigate('/calculator')}
     />
   );
 };
@@ -85,6 +103,10 @@ const router = createBrowserRouter([
   {
     path: '/result',
     element: <ResultWrapper />,
+  },
+  {
+    path: '/history',
+    element: <HistoryWrapper />,
   },
   {
     path: '*',

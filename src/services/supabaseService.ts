@@ -72,6 +72,40 @@ export const getLocalFallbackResult = (
 // to prevent concurrent race conditions (e.g. from React 18 StrictMode double-mount effects)
 const inflightRequests = new Map<string, Promise<LoveResult>>();
 
+const findLocalResult = (yourName: string, crushName: string): any | null => {
+  try {
+    const raw = localStorage.getItem('love_results_history');
+    if (!raw) return null;
+    const list = JSON.parse(raw) as any[];
+    return list.find(
+      (item) =>
+        (item.your_name === yourName && item.crush_name === crushName) ||
+        (item.your_name === crushName && item.crush_name === yourName)
+    ) || null;
+  } catch (e) {
+    console.error('Error finding local result:', e);
+    return null;
+  }
+};
+
+const saveFallbackToLocalStorage = (result: LoveResult) => {
+  try {
+    const raw = localStorage.getItem('love_results_history');
+    const list = raw ? JSON.parse(raw) : [];
+    const newRow = {
+      id: result.id,
+      your_name: result.your_name,
+      crush_name: result.crush_name,
+      score: result.score,
+      created_at: result.created_at,
+    };
+    list.push(newRow);
+    localStorage.setItem('love_results_history', JSON.stringify(list));
+  } catch (e) {
+    console.error('Error saving local result:', e);
+  }
+};
+
 /**
  * Main service function to get an existing love result or insert a new one if it does not exist.
  * Fallbacks to local calculation if Supabase is not configured or fails.
@@ -107,7 +141,24 @@ export const getOrCreateLoveResult = (
     // If Supabase client is not available (e.g., missing env variables), use local fallback
     if (!supabase) {
       console.warn('Supabase is not initialized. Using local fallback.');
-      return getLocalFallbackResult(yourName, crushName, generatedData);
+      const existing = findLocalResult(normalizedYourName, normalizedCrushName);
+      if (existing) {
+        const { message, paragraph } = getRandomText(existing.score);
+        return {
+          id: existing.id,
+          your_name: normalizedYourName,
+          crush_name: normalizedCrushName,
+          score: existing.score,
+          message,
+          paragraph,
+          created_at: existing.created_at,
+        };
+      }
+      const res = getLocalFallbackResult(yourName, crushName, generatedData);
+      res.id = Date.now();
+      res.created_at = new Date().toISOString();
+      saveFallbackToLocalStorage(res);
+      return res;
     }
 
     try {
@@ -155,7 +206,24 @@ export const getOrCreateLoveResult = (
       };
     } catch (error) {
       console.error('Supabase query/insert failed. Using local fallback:', error);
-      return getLocalFallbackResult(yourName, crushName, generatedData);
+      const existing = findLocalResult(normalizedYourName, normalizedCrushName);
+      if (existing) {
+        const { message, paragraph } = getRandomText(existing.score);
+        return {
+          id: existing.id,
+          your_name: normalizedYourName,
+          crush_name: normalizedCrushName,
+          score: existing.score,
+          message,
+          paragraph,
+          created_at: existing.created_at,
+        };
+      }
+      const res = getLocalFallbackResult(yourName, crushName, generatedData);
+      res.id = Date.now();
+      res.created_at = new Date().toISOString();
+      saveFallbackToLocalStorage(res);
+      return res;
     }
   })();
 

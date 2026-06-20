@@ -14,6 +14,7 @@ const ResultPage: React.FC<ResultPageProps> = ({
   crushName,
   onAnalyzeAnother,
   onHomeNavigate,
+  onHistoryNavigate,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
@@ -154,6 +155,7 @@ const ResultPage: React.FC<ResultPageProps> = ({
         ctaText="Back to Home" 
         onCtaClick={onHomeNavigate} 
         onLogoClick={onHomeNavigate} 
+        onHistoryClick={onHistoryNavigate}
       />
 
       <main className={styles.container}>

@@ -55,7 +55,7 @@ const CredibilityIcons = [
   </svg>
 ];
 
-const AboutCalculation: React.FC<AboutCalculationProps> = ({ onCtaClick }) => {
+const AboutCalculation: React.FC<AboutCalculationProps> = ({ onCtaClick, onHistoryNavigate }) => {
   const formulaComponents = getFormulaComponents(aboutData.formula);
 
   const scrollToTop = () => {
@@ -77,6 +77,7 @@ const AboutCalculation: React.FC<AboutCalculationProps> = ({ onCtaClick }) => {
         ctaText={aboutData.cta} 
         onCtaClick={onCtaClick} 
         onLogoClick={scrollToTop} 
+        onHistoryClick={onHistoryNavigate}
       />
 
       {/* 2. Hero Section */}

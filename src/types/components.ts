@@ -11,6 +11,7 @@ export interface NavbarProps {
   ctaText?: string;
   onLogoClick?: () => void;
   onCtaClick?: () => void;
+  onHistoryClick?: () => void;
   showNavLinks?: boolean;
 }
 

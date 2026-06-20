@@ -7,6 +7,7 @@ const Navbar: React.FC<NavbarProps> = ({
   ctaText = 'Try Calculator', 
   onLogoClick,
   onCtaClick,
+  onHistoryClick,
   showNavLinks = true
 }) => {
   const isHome = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
@@ -36,9 +37,16 @@ const Navbar: React.FC<NavbarProps> = ({
           {/* Desktop/Web view (hidden on mobile via CSS) */}
           <div className={styles.desktopCta}>
             {showNavLinks && (
-              <a href="/#how-it-works" className={styles.ctaButton}>
-                How It Works
-              </a>
+              <>
+                <a href="/#how-it-works" className={styles.ctaButton}>
+                  How It Works
+                </a>
+                {onHistoryClick && (
+                  <button className={styles.ctaButton} onClick={onHistoryClick}>
+                    Match History
+                  </button>
+                )}
+              </>
             )}
             <button className={styles.ctaButton} onClick={onCtaClick}>
               {ctaText}
@@ -47,6 +55,11 @@ const Navbar: React.FC<NavbarProps> = ({
 
           {/* Mobile view (hidden on desktop via CSS) */}
           <div className={styles.mobileCta}>
+            {onHistoryClick && (
+              <button className={styles.ctaButton} onClick={onHistoryClick} style={{ marginRight: '4px' }}>
+                History
+              </button>
+            )}
             {isHome ? (
               <button className={styles.ctaButton} onClick={onCtaClick}>
                 Try Calculator
