@@ -51,7 +51,11 @@ const CredibilityIcons = [
   </svg>
 ];
 
-const AboutCalculation: React.FC = () => {
+interface AboutCalculationProps {
+  onCtaClick?: () => void;
+}
+
+const AboutCalculation: React.FC<AboutCalculationProps> = ({ onCtaClick }) => {
   // Parse terms inside the formula parenthesis dynamically.
   // For "(Name Energy + Emotional Index + Compatibility Factor)", we extract:
   // ["Name Energy", "Emotional Index", "Compatibility Factor"]
@@ -78,6 +82,10 @@ const AboutCalculation: React.FC = () => {
       .toUpperCase();
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className={styles.page}>
       {/* Decorative background blobs */}
@@ -92,7 +100,11 @@ const AboutCalculation: React.FC = () => {
       <div className={`${styles.floatingHeart} ${styles.heart4}`}>♥</div>
 
       {/* 1. Navbar */}
-      <Navbar ctaText={aboutData.cta} />
+      <Navbar 
+        ctaText={aboutData.cta} 
+        onCtaClick={onCtaClick} 
+        onLogoClick={scrollToTop} 
+      />
 
       {/* 2. Hero Section */}
       <Section className={styles.heroSection}>
@@ -104,7 +116,7 @@ const AboutCalculation: React.FC = () => {
           </div>
           <h1 className={styles.heroTitle}>{aboutData.title}</h1>
           <p className={styles.heroSubtitle}>{aboutData.subtitle}</p>
-          <button className={styles.heroCta}>
+          <button className={styles.heroCta} onClick={onCtaClick}>
             {aboutData.cta}
             <span className={styles.ctaHeart}>♥</span>
           </button>

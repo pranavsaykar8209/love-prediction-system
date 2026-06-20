@@ -1,0 +1,111 @@
+{
+  "loading": {
+    "loadingTitle": "Analyzing Compatibility",
+    "loadingMessages": [
+      "Scanning emotional alignment...",
+      "Evaluating interaction probability...",
+      "Checking long-term compatibility...",
+      "Preparing final result..."
+    ]
+  },
+  "resultDisplay": {
+    "nameFormat": "{yourName} ❤️ {crushName}",
+    "scoreSuffix": "%"
+  },
+  "scoreRanges": [
+    {
+      "min": 70,
+      "max": 80,
+      "messages": [
+        "Moderate compatibility observed.",
+        "Balanced emotional signals detected.",
+        "Stable but developing connection identified.",
+        "Neutral alignment between both profiles.",
+        "Average compatibility with potential growth."
+      ],
+      "paragraphs": [
+        "The analysis reveals a balanced level of compatibility. While differences exist in emotional and behavioral patterns, the interaction model suggests a stable connection that may improve over time.",
+        "Observed data indicates a neutral alignment between both individuals. Communication flow is consistent but may require effort for deeper emotional bonding.",
+        "The system identifies moderate compatibility with both strengths and limitations in emotional synchronization and interaction patterns.",
+        "A stable but developing connection is observed. With improved communication, the relationship may evolve into a stronger bond.",
+        "Compatibility signals indicate an average match, where understanding is possible but requires mutual adaptation."
+      ]
+    },
+    {
+      "min": 81,
+      "max": 85,
+      "messages": [
+        "Good compatibility with positive signals.",
+        "Healthy emotional alignment detected.",
+        "Above-average connection observed.",
+        "Strong interaction potential identified.",
+        "Positive relationship indicators present."
+      ],
+      "paragraphs": [
+        "The system detects a healthy level of compatibility with strong emotional signals and positive interaction flow between both individuals.",
+        "Analysis shows above-average alignment in communication and behavioral patterns, suggesting a stable and promising connection.",
+        "Both profiles demonstrate positive compatibility indicators with room for further emotional growth and understanding.",
+        "The interaction model reflects strong potential for a meaningful connection based on consistent behavioral alignment.",
+        "Compatibility results suggest a favorable match with supportive emotional and communication dynamics."
+      ]
+    },
+    {
+      "min": 86,
+      "max": 90,
+      "messages": [
+        "Strong compatibility detected.",
+        "High emotional alignment observed.",
+        "Consistent relationship signals identified.",
+        "Very positive interaction pattern.",
+        "Strong connection probability."
+      ],
+      "paragraphs": [
+        "The analysis shows strong emotional and behavioral synchronization, indicating a highly compatible connection.",
+        "Significant alignment is observed in communication patterns, suggesting a naturally smooth interaction between both individuals.",
+        "The system detects a strong relationship potential with consistent positive signals across multiple factors.",
+        "Both profiles exhibit high compatibility with stable emotional and behavioral matching patterns.",
+        "Results indicate a strong and promising connection with high probability of long-term compatibility."
+      ]
+    },
+    {
+      "min": 91,
+      "max": 95,
+      "messages": [
+        "Very high compatibility detected.",
+        "Exceptional emotional alignment.",
+        "Strong long-term potential identified.",
+        "Highly synchronized connection.",
+        "Outstanding compatibility signals."
+      ],
+      "paragraphs": [
+        "The system detects very high compatibility with exceptional emotional alignment and strong behavioral synchronization.",
+        "Analysis shows a deeply connected interaction pattern, suggesting long-term stability and mutual understanding.",
+        "Both individuals exhibit highly compatible traits with strong emotional and communication harmony.",
+        "The relationship model indicates a rare level of alignment with significant long-term potential.",
+        "Results suggest an outstanding connection with strong emotional depth and consistent compatibility signals."
+      ]
+    },
+    {
+      "min": 96,
+      "max": 100,
+      "messages": [
+        "Exceptional compatibility detected.",
+        "Rare emotional alignment observed.",
+        "Perfect interaction harmony identified.",
+        "Elite-level compatibility signal.",
+        "Unusually strong connection detected."
+      ],
+      "paragraphs": [
+        "The system identifies an exceptional level of compatibility with rare emotional and behavioral alignment between both individuals.",
+        "Analysis shows an unusually strong connection pattern, indicating deep synchronization across multiple compatibility factors.",
+        "Both profiles exhibit near-perfect alignment in communication and emotional response patterns.",
+        "The interaction model suggests an elite-level connection with extremely high compatibility probability.",
+        "Results indicate a rare and powerful emotional match with strong long-term connection potential."
+      ]
+    }
+  ],
+  "actions": {
+    "primaryAction": "Try Again",
+    "secondaryAction": "Analyze Another Pair"
+  }
+}

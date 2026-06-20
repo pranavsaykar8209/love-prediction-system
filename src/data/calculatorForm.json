@@ -1,0 +1,17 @@
+{
+  "title": "Love Compatibility Calculator",
+  "subtitle": "Provide the names below to generate a compatibility score based on our analysis model.",
+  "inputs": [
+    {
+      "name": "yourName",
+      "label": "Your Name",
+      "placeholder": "Enter your name"
+    },
+    {
+      "name": "crushName",
+      "label": "Crush Name",
+      "placeholder": "Enter their name"
+    }
+  ],
+  "button": "Calculate Score"
+}
