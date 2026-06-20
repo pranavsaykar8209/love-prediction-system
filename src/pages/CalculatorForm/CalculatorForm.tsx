@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import FloatingHearts from '../../components/FloatingHearts/FloatingHearts';
+import HeartIcon from '../../components/HeartIcon/HeartIcon';
 import formData from '../../data/calculatorForm.json';
 import aboutData from '../../data/aboutCalculation.json';
 import styles from './CalculatorForm.module.css';
@@ -52,9 +53,9 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({ onHomeNavigate, onSubmi
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <div className={styles.cardBadge}>
-              <span className={styles.badgeHeart}>♥</span>
+              <HeartIcon className={styles.badgeHeart} />
               <span>COMPATIBILITY CHECK</span>
-              <span className={styles.badgeHeart}>♥</span>
+              <HeartIcon className={styles.badgeHeart} />
             </div>
             <h1 className={styles.title}>{formData.title}</h1>
             <p className={styles.subtitle}>{formData.subtitle}</p>
@@ -80,9 +81,9 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({ onHomeNavigate, onSubmi
             ))}
 
             <button type="submit" className={styles.button}>
-              <span className={styles.buttonHeart}>♥</span>
+              <HeartIcon className={styles.buttonHeart} />
               {formData.button}
-              <span className={styles.buttonHeart}>♥</span>
+              <HeartIcon className={styles.buttonHeart} />
             </button>
           </form>
         </div>
@@ -91,9 +92,9 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({ onHomeNavigate, onSubmi
       {/* Footer / Disclaimer */}
       <footer className={styles.footer}>
         <div className={styles.disclaimerContainer}>
-          <span className={styles.disclaimerIcon}>♥</span>
+          <HeartIcon className={styles.disclaimerIcon} />
           <span className={styles.disclaimerTitle}>Disclaimer</span>
-          <span className={styles.disclaimerIcon}>♥</span>
+          <HeartIcon className={styles.disclaimerIcon} />
           <p className={styles.disclaimerText}>{aboutData.disclaimer}</p>
         </div>
       </footer>

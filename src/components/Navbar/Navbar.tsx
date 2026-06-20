@@ -1,4 +1,5 @@
 import React from 'react';
+import HeartIcon from '../HeartIcon/HeartIcon';
 import type { NavbarProps } from '../../types';
 import styles from './Navbar.module.css';
 
@@ -25,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({
             }
           }}
         >
-          <span className={styles.heartIcon}>♥</span>
+          <HeartIcon className={styles.heartIcon} />
           <span className={styles.logoText}>LoveMatch</span>
         </div>
 

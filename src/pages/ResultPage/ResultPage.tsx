@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import FloatingHearts from '../../components/FloatingHearts/FloatingHearts';
+import HeartIcon from '../../components/HeartIcon/HeartIcon';
 import config from '../../data/analysisResultConfig.json';
 import aboutData from '../../data/aboutCalculation.json';
 import styles from './ResultPage.module.css';
@@ -183,7 +184,9 @@ const ResultPage: React.FC<ResultPageProps> = ({
                     }}
                   />
                 </svg>
-                <div className={styles.loaderHeart}>♥</div>
+                <div className={styles.loaderHeart}>
+                  <HeartIcon />
+                </div>
               </div>
 
               <div className={styles.loadingMessageWrapper}>
@@ -227,9 +230,9 @@ const ResultPage: React.FC<ResultPageProps> = ({
                   onClick={handleLocalTryAgain} 
                   className={styles.primaryButton}
                 >
-                  <span className={styles.buttonHeart}>♥</span>
+                  <HeartIcon className={styles.buttonHeart} />
                   {config.actions.primaryAction}
-                  <span className={styles.buttonHeart}>♥</span>
+                  <HeartIcon className={styles.buttonHeart} />
                 </button>
                 <button 
                   onClick={onAnalyzeAnother} 
@@ -246,9 +249,9 @@ const ResultPage: React.FC<ResultPageProps> = ({
       {/* Footer / Disclaimer */}
       <footer className={styles.footer}>
         <div className={styles.disclaimerContainer}>
-          <span className={styles.disclaimerIcon}>♥</span>
+          <HeartIcon className={styles.disclaimerIcon} />
           <span className={styles.disclaimerTitle}>Disclaimer</span>
-          <span className={styles.disclaimerIcon}>♥</span>
+          <HeartIcon className={styles.disclaimerIcon} />
           <p className={styles.disclaimerText}>{aboutData.disclaimer}</p>
         </div>
       </footer>

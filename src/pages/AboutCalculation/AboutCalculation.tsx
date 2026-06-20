@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Section from '../../components/Section/Section';
+import HeartIcon from '../../components/HeartIcon/HeartIcon';
 import Card from '../../components/Card/Card';
 import FloatingHearts from '../../components/FloatingHearts/FloatingHearts';
 import aboutData from '../../data/aboutCalculation.json';
@@ -82,15 +83,15 @@ const AboutCalculation: React.FC<AboutCalculationProps> = ({ onCtaClick }) => {
       <Section className={styles.heroSection}>
         <div className={styles.heroContent}>
           <div className={styles.heroBadge}>
-            <span className={styles.heroHeart}>♥</span>
+            <HeartIcon className={styles.heroHeart} />
             <span>About Calculation</span>
-            <span className={styles.heroHeart}>♥</span>
+            <HeartIcon className={styles.heroHeart} />
           </div>
           <h1 className={styles.heroTitle}>{aboutData.title}</h1>
           <p className={styles.heroSubtitle}>{aboutData.subtitle}</p>
           <button className={styles.heroCta} onClick={onCtaClick}>
             {aboutData.cta}
-            <span className={styles.ctaHeart}>♥</span>
+            <HeartIcon className={styles.ctaHeart} />
           </button>
         </div>
       </Section>
@@ -141,7 +142,7 @@ const AboutCalculation: React.FC<AboutCalculationProps> = ({ onCtaClick }) => {
 
           {/* Prominent Formula Text display */}
           <div className={styles.formulaTextContainer}>
-            <span className={styles.formulaHeart}>♥</span>
+            <HeartIcon className={styles.formulaHeart} />
             <p className={styles.formulaText}>{aboutData.formula}</p>
           </div>
         </div>
@@ -175,9 +176,9 @@ const AboutCalculation: React.FC<AboutCalculationProps> = ({ onCtaClick }) => {
       {/* 6. Disclaimer Section */}
       <footer className={styles.footer}>
         <div className={styles.disclaimerContainer}>
-          <span className={styles.disclaimerIcon}>♥</span>
+          <HeartIcon className={styles.disclaimerIcon} />
           <span className={styles.disclaimerTitle}>Disclaimer</span>
-          <span className={styles.disclaimerIcon}>♥</span>
+          <HeartIcon className={styles.disclaimerIcon} />
           <p className={styles.disclaimerText}>{aboutData.disclaimer}</p>
         </div>
       </footer>

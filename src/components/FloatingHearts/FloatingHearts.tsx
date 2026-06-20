@@ -1,4 +1,5 @@
 import React from 'react';
+import HeartIcon from '../HeartIcon/HeartIcon';
 import styles from './FloatingHearts.module.css';
 
 interface FloatingHeartsProps {
@@ -14,12 +15,10 @@ const FloatingHearts: React.FC<FloatingHeartsProps> = ({ count = 25 }) => {
       {Array.from({ length: safeCount }).map((_, index) => {
         const heartClass = styles[`heart${index + 1}`];
         return (
-          <div
+          <HeartIcon
             key={index}
             className={`${styles.floatingHeart} ${heartClass}`}
-          >
-            ♥
-          </div>
+          />
         );
       })}
     </>
