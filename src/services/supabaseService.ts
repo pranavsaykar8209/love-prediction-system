@@ -23,6 +23,20 @@ export const getLocalFallbackResult = (
   crushName: string,
   generatedData?: { score: number }
 ): LoveResult => {
+  const cleanYour = yourName.trim().toLowerCase();
+  const cleanCrush = crushName.trim().toLowerCase();
+
+  if (cleanYour === cleanCrush) {
+    const { message, paragraph } = getRandomText(100);
+    return {
+      your_name: cleanYour,
+      crush_name: cleanCrush,
+      score: 100,
+      message,
+      paragraph,
+    };
+  }
+
   const [normalizedYourName, normalizedCrushName] = normalizeAndSortNames(yourName, crushName);
 
   let score: number;
@@ -67,6 +81,20 @@ export const getOrCreateLoveResult = (
   crushName: string,
   generatedData?: { score: number }
 ): Promise<LoveResult> => {
+  const cleanYour = yourName.trim().toLowerCase();
+  const cleanCrush = crushName.trim().toLowerCase();
+
+  if (cleanYour === cleanCrush) {
+    const { message, paragraph } = getRandomText(100);
+    return Promise.resolve({
+      your_name: cleanYour,
+      crush_name: cleanCrush,
+      score: 100,
+      message,
+      paragraph,
+    });
+  }
+
   const [normalizedYourName, normalizedCrushName] = normalizeAndSortNames(yourName, crushName);
   const key = `${normalizedYourName}:${normalizedCrushName}`;
 
