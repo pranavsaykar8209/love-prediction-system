@@ -8,6 +8,7 @@ interface ResultPageProps {
   yourName: string;
   crushName: string;
   onAnalyzeAnother: () => void;
+  onHomeNavigate: () => void;
 }
 
 const capitalizeName = (str: string): string => {
@@ -23,6 +24,7 @@ const ResultPage: React.FC<ResultPageProps> = ({
   yourName,
   crushName,
   onAnalyzeAnother,
+  onHomeNavigate,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
@@ -145,8 +147,8 @@ const ResultPage: React.FC<ResultPageProps> = ({
       {/* Navbar */}
       <Navbar 
         ctaText="Back to Home" 
-        onCtaClick={onAnalyzeAnother} 
-        onLogoClick={onAnalyzeAnother} 
+        onCtaClick={onHomeNavigate} 
+        onLogoClick={onHomeNavigate} 
       />
 
       <main className={styles.container}>

@@ -38,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({
         {/* Right: CTA Buttons */}
         <div className={styles.ctaWrapper}>
           {showNavLinks && (
-            <a href="#calculator" className={styles.ctaButton}>
+            <a href="/#how-it-works" className={styles.ctaButton}>
               How It Works
             </a>
           )}

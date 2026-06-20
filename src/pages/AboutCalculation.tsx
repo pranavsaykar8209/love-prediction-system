@@ -125,7 +125,7 @@ const AboutCalculation: React.FC<AboutCalculationProps> = ({ onCtaClick }) => {
 
       {/* 3. How It Works Section */}
       <Section
-        id="calculator"
+        id="how-it-works"
         badge="How It Works"
         title="Simple steps to find your love compatibility"
         subtitle="Our algorithm runs several multi-dimensional alignment checks on input factors to compute the compatibility percentage."
