@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider, Navigate, useNavigate, useLocation } from 'react-router-dom';
-import AboutCalculation from '../pages/AboutCalculation';
-import CalculatorForm from '../pages/CalculatorForm';
-import ResultPage from '../pages/ResultPage';
+import AboutCalculation from '../pages/AboutCalculation/AboutCalculation';
+import CalculatorForm from '../pages/CalculatorForm/CalculatorForm';
+import ResultPage from '../pages/ResultPage/ResultPage';
 
 const AboutWrapper: React.FC = () => {
   const navigate = useNavigate();

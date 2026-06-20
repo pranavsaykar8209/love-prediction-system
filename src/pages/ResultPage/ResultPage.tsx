@@ -1,24 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
-import config from '../data/analysisResultConfig.json';
-import aboutData from '../data/aboutCalculation.json';
+import Navbar from '../../components/Navbar/Navbar';
+import config from '../../data/analysisResultConfig.json';
+import aboutData from '../../data/aboutCalculation.json';
 import styles from './ResultPage.module.css';
-
-interface ResultPageProps {
-  yourName: string;
-  crushName: string;
-  onAnalyzeAnother: () => void;
-  onHomeNavigate: () => void;
-}
-
-const capitalizeName = (str: string): string => {
-  if (!str) return '';
-  return str
-    .toLowerCase()
-    .split(' ')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-};
+import type { ResultPageProps } from '../../types';
+import { capitalizeName } from '../../utils';
 
 const ResultPage: React.FC<ResultPageProps> = ({
   yourName,

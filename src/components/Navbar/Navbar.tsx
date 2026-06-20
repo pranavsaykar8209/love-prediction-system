@@ -1,12 +1,6 @@
 import React from 'react';
+import type { NavbarProps } from '../../types';
 import styles from './Navbar.module.css';
-
-interface NavbarProps {
-  ctaText?: string;
-  onLogoClick?: () => void;
-  onCtaClick?: () => void;
-  showNavLinks?: boolean;
-}
 
 const Navbar: React.FC<NavbarProps> = ({ 
   ctaText = 'Try Calculator', 

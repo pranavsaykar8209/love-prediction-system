@@ -1,19 +1,9 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
-import formData from '../data/calculatorForm.json';
-import aboutData from '../data/aboutCalculation.json';
+import Navbar from '../../components/Navbar/Navbar';
+import formData from '../../data/calculatorForm.json';
+import aboutData from '../../data/aboutCalculation.json';
 import styles from './CalculatorForm.module.css';
-
-interface CalculatorFormProps {
-  onHomeNavigate: () => void;
-  onSubmit: (yourName: string, crushName: string) => void;
-}
-
-interface FormInputConfig {
-  name: string;
-  label: string;
-  placeholder: string;
-}
+import type { CalculatorFormProps, FormInputConfig } from '../../types';
 
 const CalculatorForm: React.FC<CalculatorFormProps> = ({ onHomeNavigate, onSubmit }) => {
   // Initialize state based on JSON input configuration dynamically

@@ -1,14 +1,6 @@
 import React from 'react';
+import type { SectionProps } from '../../types';
 import styles from './Section.module.css';
-
-interface SectionProps {
-  id?: string;
-  badge?: string;
-  title?: string;
-  subtitle?: string;
-  className?: string;
-  children: React.ReactNode;
-}
 
 const Section: React.FC<SectionProps> = ({
   id,

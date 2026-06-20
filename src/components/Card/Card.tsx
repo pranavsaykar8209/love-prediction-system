@@ -1,12 +1,6 @@
 import React from 'react';
+import type { CardProps } from '../../types';
 import styles from './Card.module.css';
-
-interface CardProps {
-  stepNumber?: string;
-  title: string;
-  description: string;
-  icon?: React.ReactNode;
-}
 
 const Card: React.FC<CardProps> = ({ stepNumber, title, description, icon }) => {
   return (

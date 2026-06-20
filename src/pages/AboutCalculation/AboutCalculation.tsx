@@ -1,9 +1,11 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
-import Section from '../components/Section';
-import Card from '../components/Card';
-import aboutData from '../data/aboutCalculation.json';
+import Navbar from '../../components/Navbar/Navbar';
+import Section from '../../components/Section/Section';
+import Card from '../../components/Card/Card';
+import aboutData from '../../data/aboutCalculation.json';
 import styles from './AboutCalculation.module.css';
+import type { AboutCalculationProps } from '../../types';
+import { getFormulaComponents, getAbbreviation } from '../../utils';
 
 // SVG Icons for "How It Works" steps matching the design aesthetic
 const StepIcons = [
@@ -51,36 +53,8 @@ const CredibilityIcons = [
   </svg>
 ];
 
-interface AboutCalculationProps {
-  onCtaClick?: () => void;
-}
-
 const AboutCalculation: React.FC<AboutCalculationProps> = ({ onCtaClick }) => {
-  // Parse terms inside the formula parenthesis dynamically.
-  // For "(Name Energy + Emotional Index + Compatibility Factor)", we extract:
-  // ["Name Energy", "Emotional Index", "Compatibility Factor"]
-  const getFormulaComponents = () => {
-    try {
-      const match = aboutData.formula.match(/\(([^)]+)\)/);
-      if (match && match[1]) {
-        return match[1].split('+').map((item) => item.trim());
-      }
-    } catch (e) {
-      console.error('Error parsing formula components:', e);
-    }
-    return ['Name Energy', 'Emotional Index', 'Compatibility Factor'];
-  };
-
-  const formulaComponents = getFormulaComponents();
-
-  // Short codes for circles (e.g. "Name Energy" -> "NE")
-  const getAbbreviation = (name: string) => {
-    return name
-      .split(' ')
-      .map((w) => w[0])
-      .join('')
-      .toUpperCase();
-  };
+  const formulaComponents = getFormulaComponents(aboutData.formula);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
