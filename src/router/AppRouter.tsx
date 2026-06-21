@@ -1,9 +1,18 @@
 import React, { useEffect } from 'react';
-import { createBrowserRouter, RouterProvider, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate, useNavigate, useLocation, Outlet, ScrollRestoration } from 'react-router-dom';
 import AboutCalculation from '../pages/AboutCalculation/AboutCalculation';
 import CalculatorForm from '../pages/CalculatorForm/CalculatorForm';
 import ResultPage from '../pages/ResultPage/ResultPage';
 import HistoryPage from '../pages/HistoryPage/HistoryPage';
+
+const RootLayout: React.FC = () => {
+  return (
+    <>
+      <ScrollRestoration />
+      <Outlet />
+    </>
+  );
+};
 
 const AboutWrapper: React.FC = () => {
   const navigate = useNavigate();
@@ -15,6 +24,10 @@ const AboutWrapper: React.FC = () => {
           const el = document.getElementById('how-it-works');
           if (el) {
             el.scrollIntoView({ behavior: 'smooth' });
+            // Clean up the URL hash so the browser doesn't lock scroll to it
+            setTimeout(() => {
+              window.history.replaceState(null, '', window.location.pathname);
+            }, 800);
           }
         }, 100);
       }
@@ -91,23 +104,29 @@ const HistoryWrapper: React.FC = () => {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <AboutWrapper />,
-  },
-  {
-    path: '/calculator',
-    element: <CalculatorWrapper />,
-  },
-  {
-    path: '/result',
-    element: <ResultWrapper />,
-  },
-  {
-    path: '/history',
-    element: <HistoryWrapper />,
-  },
-  {
-    path: '*',
-    element: <Navigate to="/" replace />,
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <AboutWrapper />,
+      },
+      {
+        path: 'calculator',
+        element: <CalculatorWrapper />,
+      },
+      {
+        path: 'result',
+        element: <ResultWrapper />,
+      },
+      {
+        path: 'history',
+        element: <HistoryWrapper />,
+      },
+      {
+        path: '*',
+        element: <Navigate to="/" replace />,
+      },
+    ],
   },
 ]);
 

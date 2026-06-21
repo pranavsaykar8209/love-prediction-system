@@ -59,8 +59,10 @@ const PinLock: React.FC<PinLockProps> = ({ onUnlock }) => {
   return (
     <div className={styles.overlay}>
       {/* Background blobs */}
-      <div className={`${styles.blob} ${styles.blobPink}`} />
-      <div className={`${styles.blob} ${styles.blobPurple}`} />
+      <div className="blobContainer">
+        <div className={`${styles.blob} ${styles.blobPink}`} />
+        <div className={`${styles.blob} ${styles.blobPurple}`} />
+      </div>
 
       <div className={styles.card}>
         {/* Lock icon */}

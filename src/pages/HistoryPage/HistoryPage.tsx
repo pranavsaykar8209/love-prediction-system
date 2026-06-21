@@ -215,9 +215,11 @@ const HistoryPage: React.FC<HistoryPageProps> = ({ onHomeNavigate, onCalculateNa
       <div style={{ display: authenticated ? 'block' : 'none' }}>
     <div className={styles.page}>
       {/* Decorative background blobs */}
-      <div className={`${styles.blob} ${styles.blobPink}`}></div>
-      <div className={`${styles.blob} ${styles.blobPurple}`}></div>
-      <div className={`${styles.blob} ${styles.blobLavender}`}></div>
+      <div className="blobContainer">
+        <div className={`${styles.blob} ${styles.blobPink}`}></div>
+        <div className={`${styles.blob} ${styles.blobPurple}`}></div>
+        <div className={`${styles.blob} ${styles.blobLavender}`}></div>
+      </div>
 
       {/* Floating hearts */}
       <FloatingHearts count={15} />

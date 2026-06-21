@@ -4,11 +4,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--page-bg);
-  background-attachment: fixed;
   position: relative;
   overflow: hidden;
   font-family: 'Inter', sans-serif;
+  padding: 24px !important;
+  box-sizing: border-box;
 }
 
 /* Background blobs */
@@ -55,7 +55,7 @@
   align-items: center;
   gap: 0;
   width: 320px;
-  max-width: calc(100vw - 40px);
+  max-width: 100%;
 }
 
 /* Lock icon */

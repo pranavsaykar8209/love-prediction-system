@@ -38,9 +38,11 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({ onHomeNavigate, onSubmi
   return (
     <div className={styles.page}>
       {/* Decorative background blobs */}
-      <div className={`${styles.blob} ${styles.blobPink}`}></div>
-      <div className={`${styles.blob} ${styles.blobPurple}`}></div>
-      <div className={`${styles.blob} ${styles.blobLavender}`}></div>
+      <div className="blobContainer">
+        <div className={`${styles.blob} ${styles.blobPink}`}></div>
+        <div className={`${styles.blob} ${styles.blobPurple}`}></div>
+        <div className={`${styles.blob} ${styles.blobLavender}`}></div>
+      </div>
 
       {/* Floating hearts */}
       <FloatingHearts count={10} />

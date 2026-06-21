@@ -1,11 +1,8 @@
 .page {
   min-height: 100vh;
   width: 100%;
-  background: var(--page-bg);
-  background-attachment: fixed;
   color: var(--text-primary);
   position: relative;
-  overflow-x: hidden;
   font-family: 'Inter', sans-serif;
   box-sizing: border-box;
   display: flex;
@@ -55,7 +52,9 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 40px 24px 80px 24px;
+  padding: 40px 24px 80px 24px !important;
+  box-sizing: border-box;
+  width: 100%;
   z-index: 10;
 }
 
@@ -67,6 +66,7 @@
   border: 1px solid var(--card-border);
   max-width: 900px;
   width: 100%;
+  min-width: 0;
   box-sizing: border-box;
   position: relative;
   z-index: 2;
@@ -301,11 +301,13 @@
 /* Table styling */
 .tableWrapper {
   border-radius: 16px;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   border: 1px solid var(--card-border);
   box-shadow: 0 4px 20px var(--table-shadow);
   background: var(--card-bg);
   min-height: 200px;
+  width: 100%;
 }
 
 .table {
@@ -350,10 +352,10 @@
 
 /* Column dimensions */
 .colCheck {
-  width: 52px;
-  padding: 0 !important;
+  width: 60px;
+  padding: 0 0 0 24px !important;
   display: table-cell;
-  text-align: center;
+  text-align: left;
   vertical-align: middle;
 }
 
@@ -363,11 +365,14 @@
 
 .colScore {
   width: 100px;
+  text-align: right;
+  padding-right: 24px !important;
 }
 
 .colTime {
   width: 200px;
   color: var(--text-muted);
+  padding-right: 24px !important;
 }
 
 /* Checkbox customization */
@@ -473,42 +478,40 @@
   }
 
   .scoreTooltip {
-  display: block;
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--score-tooltip-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--tooltip-border);
-  box-shadow: 0 6px 20px var(--tooltip-shadow);
-  border-radius: 10px;
-  padding: 8px 12px;
-  white-space: nowrap;
-  font-size: 0.78rem;
-  font-family: 'Inter', sans-serif;
-  color: var(--text-secondary-alt);
-  font-weight: 500;
-  z-index: 100;
-  pointer-events: none;
-  animation: tooltipFadeIn 0.18s ease forwards;
-}
+    display: block;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    right: 0;
+    background: var(--score-tooltip-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--tooltip-border);
+    box-shadow: 0 6px 20px var(--tooltip-shadow);
+    border-radius: 10px;
+    padding: 8px 12px;
+    white-space: nowrap;
+    font-size: 0.78rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-secondary-alt);
+    font-weight: 500;
+    z-index: 100;
+    pointer-events: none;
+    animation: tooltipFadeIn 0.18s ease forwards;
+  }
 
   .scoreTooltip::after {
     content: '';
     position: absolute;
     top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 16px;
     border: 6px solid transparent;
     border-top-color: var(--tooltip-border);
   }
 }
 
 @keyframes tooltipFadeIn {
-  from { opacity: 0; transform: translateX(-50%) translateY(4px); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .scoreBadge {
@@ -748,9 +751,9 @@
   }
 
   .actionBar {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
   }
 
   /* Search form fills available width, other buttons stay fixed */
@@ -781,12 +784,18 @@
 
 @media (max-width: 480px) {
   .container {
-    padding: 20px 12px 60px 12px;
+    padding: 20px 24px 60px 24px !important;
+    box-sizing: border-box;
+    width: 100%;
   }
 
   .card {
-    padding: 24px 16px;
+    padding: 24px;
     border-radius: 16px;
+  }
+
+  .table td, .table th {
+    padding: 16px 12px;
   }
 
   .title {
@@ -794,7 +803,11 @@
   }
 
   .colScore {
-    width: 70px;
+    width: 90px;
+  }
+
+  .colMatch {
+    min-width: 140px;
   }
 
   .scoreBadge {
@@ -804,5 +817,11 @@
 
   .name {
     font-size: 0.85rem;
+  }
+
+  .bulkDeleteButton {
+    width: 100%;
+    justify-content: center;
+    margin-top: 4px;
   }
 }
