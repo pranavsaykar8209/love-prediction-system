@@ -13,13 +13,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--navbar-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 9999px;
   padding: 10px 24px;
-  box-shadow: 0 8px 30px rgba(255, 182, 193, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 30px var(--navbar-shadow);
+  border: 1px solid var(--navbar-border);
   font-family: 'Inter', sans-serif;
   transition: all 0.3s ease;
 }
@@ -63,7 +63,7 @@
 
 .link {
   text-decoration: none;
-  color: #5c4a60;
+  color: var(--nav-link);
   font-size: 0.95rem;
   font-weight: 500;
   transition: color 0.2s ease;
@@ -132,6 +132,74 @@
 
 .ctaButton:active {
   transform: translateY(0);
+}
+
+/* ─── Dark mode toggle ─── */
+.themeToggleWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.themeToggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.themeToggle:hover {
+  background: var(--page-btn-hover-bg);
+  color: #ff4b82;
+  border-color: rgba(255, 75, 130, 0.4);
+  transform: rotate(15deg) scale(1.08);
+}
+
+.tooltip {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  background: var(--accent-primary);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px var(--btn-shadow);
+  z-index: 1001;
+  animation: tooltipFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  right: 12px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent var(--accent-primary) transparent;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes heartbeat {
@@ -210,4 +278,3 @@
     font-size: 0.9rem;
   }
 }
-

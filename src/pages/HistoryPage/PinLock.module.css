@@ -4,7 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #fff3f6 0%, #f4efff 100%);
+  background: var(--page-bg);
+  background-attachment: fixed;
   position: relative;
   overflow: hidden;
   font-family: 'Inter', sans-serif;
@@ -17,6 +18,9 @@
   filter: blur(120px);
   pointer-events: none;
   z-index: 0;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  will-change: filter;
 }
 
 .blobPink {
@@ -24,7 +28,7 @@
   left: -120px;
   width: 420px;
   height: 420px;
-  background: rgba(255, 182, 193, 0.5);
+  background: var(--blob-pink);
 }
 
 .blobPurple {
@@ -32,20 +36,20 @@
   right: -120px;
   width: 460px;
   height: 460px;
-  background: rgba(162, 85, 235, 0.22);
+  background: var(--blob-purple);
 }
 
 /* Card */
 .card {
   position: relative;
   z-index: 1;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--pin-card-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 192, 203, 0.35);
+  border: 1px solid var(--card-border);
   border-radius: 28px;
   padding: 40px 32px 36px;
-  box-shadow: 0 16px 48px rgba(255, 75, 130, 0.12);
+  box-shadow: 0 16px 48px var(--card-shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,7 +83,7 @@
 
 .subtitle {
   font-size: 0.85rem;
-  color: #8d7993;
+  color: var(--text-muted);
   margin: 0 0 24px;
   text-align: center;
 }
@@ -147,9 +151,9 @@
   font-family: 'Outfit', sans-serif;
   font-size: 1.4rem;
   font-weight: 600;
-  color: #3b2c40;
-  background: rgba(255, 245, 248, 0.8);
-  border: 1.5px solid rgba(255, 192, 203, 0.45);
+  color: var(--text-primary);
+  background: var(--pin-key-bg);
+  border: 1.5px solid var(--input-border);
   border-radius: 16px;
   padding: 0;
   height: 60px;
@@ -178,8 +182,8 @@
 /* Delete (backspace) key */
 .keyDelete {
   font-size: 1.1rem;
-  color: #8d7993;
-  background: rgba(240, 235, 245, 0.8);
+  color: var(--text-muted);
+  background: var(--pin-key-delete-bg);
   border-color: rgba(200, 185, 210, 0.4);
 }
 

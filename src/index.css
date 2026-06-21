@@ -3,3 +3,203 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+/* ─── Light mode (default) ─────────────────────────────── */
+:root {
+  --page-bg:            linear-gradient(135deg, #fff3f6 0%, #f4efff 100%);
+  --card-bg:            #ffffff;
+  --card-bg-alpha:      rgba(255, 255, 255, 0.85);
+  --card-border:        rgba(255, 192, 203, 0.3);
+  --card-shadow:        rgba(255, 200, 210, 0.25);
+
+  --text-primary:       #3b2c40;
+  --text-secondary:     #705b76;
+  --text-secondary-alt: #5c4a60;
+  --text-muted:         #8d7993;
+
+  --input-bg:           #faf8fb;
+  --input-bg-focus:     #ffffff;
+  --input-border:       rgba(255, 192, 203, 0.5);
+  --placeholder:        #bfaec4;
+
+  --table-header-bg:    rgba(255, 75, 130, 0.04);
+  --table-row-hover:    rgba(255, 245, 247, 0.4);
+  --table-border:       rgba(255, 192, 203, 0.15);
+  --table-header-border:rgba(255, 192, 203, 0.25);
+  --row-selected-bg:    rgba(255, 75, 130, 0.03);
+  --row-selected-hover: rgba(255, 75, 130, 0.05);
+
+  --blob-pink:          rgba(255, 182, 193, 0.45);
+  --blob-purple:        rgba(162, 85, 235, 0.2);
+  --blob-lavender:      rgba(230, 230, 250, 0.6);
+
+  --navbar-bg:          rgba(255, 255, 255, 0.85);
+  --navbar-border:      rgba(255, 255, 255, 0.6);
+  --navbar-shadow:      rgba(255, 182, 193, 0.25);
+  --nav-link:           #5c4a60;
+
+  --formula-bg:         #ffffff;
+  --formula-bubble-bg:  linear-gradient(135deg, #fff0f3 0%, #f4efff 100%);
+  --formula-text-bg:    #fff0f3;
+  --credibility-bg:     #ffffff;
+  --credibility-icon-bg:#f4efff;
+
+  --disclaimer-bg:      rgba(255, 255, 255, 0.85);
+  --disclaimer-border:  rgba(255, 255, 255, 0.6);
+
+  --checkbox-bg:        #faf8fb;
+  --checkbox-border:    rgba(255, 192, 203, 0.7);
+
+  --page-btn-bg:        rgba(255, 245, 248, 0.8);
+  --page-btn-hover-bg:  rgba(255, 220, 230, 0.7);
+  --page-btn-border:    rgba(255, 192, 203, 0.5);
+
+  --refresh-bg:         rgba(255, 245, 248, 0.8);
+  --refresh-color:      #8d7993;
+  --refresh-hover-bg:   rgba(255, 220, 230, 0.6);
+  --refresh-border-hover: rgba(255, 75, 130, 0.35);
+
+  --toast-bg:           rgba(255, 255, 255, 0.9);
+  --toast-border:       rgba(255, 75, 130, 0.3);
+  --toast-shadow:       rgba(255, 75, 130, 0.15);
+  --confirm-modal-bg:   rgba(255, 255, 255, 0.97);
+  --pin-card-bg:        rgba(255, 255, 255, 0.92);
+  --pin-key-bg:         rgba(255, 245, 248, 0.8);
+  --pin-key-delete-bg:  rgba(240, 235, 245, 0.8);
+
+  --search-input-bg:    #faf8fb;
+  --search-input-focus: #ffffff;
+  --input-focus-ring:   rgba(255, 75, 130, 0.12);
+
+  --score-tooltip-bg:   rgba(255, 255, 255, 0.96);
+  --tooltip-border:     rgba(255, 75, 130, 0.25);
+  --tooltip-shadow:     rgba(255, 75, 130, 0.15);
+
+  --accent-primary:     #ff4b82;
+  --white:              #ffffff;
+  --btn-gradient:       linear-gradient(135deg, #ff4b82 0%, #a255eb 100%);
+  --btn-shadow:         rgba(255, 75, 130, 0.25);
+  --btn-shadow-hover:   rgba(255, 75, 130, 0.35);
+  --danger-gradient:    linear-gradient(135deg, #ff4b5c 0%, #d82b40 100%);
+  --danger-shadow:      rgba(216, 43, 64, 0.25);
+  --danger-shadow-hover:rgba(216, 43, 64, 0.35);
+  --title-gradient:     linear-gradient(135deg, #ff4b82 0%, #7d3deb 100%);
+
+  --score-high-bg:      rgba(255, 75, 130, 0.1);
+  --score-high-text:    #ff4b82;
+  --score-high-border:  rgba(255, 75, 130, 0.2);
+  --score-med-bg:       rgba(162, 85, 235, 0.1);
+  --score-med-text:     #a255eb;
+  --score-med-border:   rgba(162, 85, 235, 0.2);
+  --score-low-bg:       rgba(255, 141, 161, 0.1);
+  --score-low-text:     #ff708a;
+  --score-low-border:   rgba(255, 141, 161, 0.2);
+
+  --spinner-border:     rgba(255, 75, 130, 0.1);
+  --empty-heart:        rgba(255, 192, 203, 0.6);
+  --table-shadow:       rgba(0, 0, 0, 0.02);
+  --disclaimer-icon:    #ff8da1;
+}
+
+/* ─── Dark mode ─────────────────────────────────────────── */
+[data-theme="dark"] {
+  --page-bg:            linear-gradient(135deg, #1a0e20 0%, #0f0a1a 100%);
+  --card-bg:            #241330;
+  --card-bg-alpha:      rgba(36, 19, 48, 0.92);
+  --card-border:        rgba(255, 75, 130, 0.15);
+  --card-shadow:        rgba(0, 0, 0, 0.4);
+
+  --text-primary:       #f0e8f8;
+  --text-secondary:     #c4a8d8;
+  --text-secondary-alt: #d0b8e0;
+  --text-muted:         #9a7aaa;
+
+  --input-bg:           #1c1028;
+  --input-bg-focus:     #221535;
+  --input-border:       rgba(255, 75, 130, 0.25);
+  --placeholder:        #7a5a8a;
+
+  --table-header-bg:    rgba(255, 75, 130, 0.08);
+  --table-row-hover:    rgba(255, 75, 130, 0.05);
+  --table-border:       rgba(255, 75, 130, 0.1);
+  --table-header-border:rgba(255, 75, 130, 0.18);
+  --row-selected-bg:    rgba(255, 75, 130, 0.08);
+  --row-selected-hover: rgba(255, 75, 130, 0.12);
+
+  --blob-pink:          rgba(255, 75, 130, 0.1);
+  --blob-purple:        rgba(162, 85, 235, 0.12);
+  --blob-lavender:      rgba(130, 90, 180, 0.1);
+
+  --navbar-bg:          rgba(28, 14, 38, 0.9);
+  --navbar-border:      rgba(255, 75, 130, 0.12);
+  --navbar-shadow:      rgba(0, 0, 0, 0.4);
+  --nav-link:           #c4a8d8;
+
+  --formula-bg:         #241330;
+  --formula-bubble-bg:  linear-gradient(135deg, #2a1035 0%, #1a0e2a 100%);
+  --formula-text-bg:    #2a1035;
+  --credibility-bg:     #241330;
+  --credibility-icon-bg:#1e0e2e;
+
+  --disclaimer-bg:      rgba(36, 19, 48, 0.9);
+  --disclaimer-border:  rgba(255, 75, 130, 0.12);
+
+  --checkbox-bg:        #1c1028;
+  --checkbox-border:    rgba(255, 75, 130, 0.3);
+
+  --page-btn-bg:        rgba(36, 19, 48, 0.9);
+  --page-btn-hover-bg:  rgba(60, 30, 75, 0.9);
+  --page-btn-border:    rgba(255, 75, 130, 0.2);
+
+  --refresh-bg:         rgba(36, 19, 48, 0.9);
+  --refresh-color:      #9a7aaa;
+  --refresh-hover-bg:   rgba(60, 30, 75, 0.9);
+
+  --toast-bg:           rgba(36, 19, 48, 0.95);
+  --confirm-modal-bg:   rgba(28, 14, 40, 0.98);
+  --pin-card-bg:        rgba(28, 14, 40, 0.95);
+  --pin-key-bg:         rgba(40, 20, 55, 0.9);
+  --pin-key-delete-bg:  rgba(30, 15, 45, 0.9);
+
+  --search-input-bg:    #1c1028;
+  --search-input-focus: #221535;
+  --input-focus-ring:   rgba(255, 75, 130, 0.2);
+
+  --score-tooltip-bg:   rgba(28, 14, 40, 0.96);
+  --tooltip-border:     rgba(255, 75, 130, 0.3);
+  --tooltip-shadow:     rgba(0, 0, 0, 0.4);
+
+  --refresh-border-hover: rgba(255, 75, 130, 0.5);
+  --toast-border:       rgba(255, 75, 130, 0.25);
+  --toast-shadow:       rgba(0, 0, 0, 0.3);
+
+  --accent-primary:     #ff4b82;
+  --white:              #ffffff;
+  --btn-gradient:       linear-gradient(135deg, #ff4b82 0%, #a255eb 100%);
+  --btn-shadow:         rgba(255, 75, 130, 0.2);
+  --btn-shadow-hover:   rgba(255, 75, 130, 0.3);
+  --danger-gradient:    linear-gradient(135deg, #ff4b5c 0%, #d82b40 100%);
+  --danger-shadow:      rgba(216, 43, 64, 0.2);
+  --danger-shadow-hover:rgba(216, 43, 64, 0.3);
+  --title-gradient:     linear-gradient(135deg, #ff6fa0 0%, #a87de8 100%);
+
+  --score-high-bg:      rgba(255, 75, 130, 0.15);
+  --score-high-text:    #ff7aaa;
+  --score-high-border:  rgba(255, 75, 130, 0.3);
+  --score-med-bg:       rgba(162, 85, 235, 0.15);
+  --score-med-text:     #c47aff;
+  --score-med-border:   rgba(162, 85, 235, 0.3);
+  --score-low-bg:       rgba(255, 141, 161, 0.12);
+  --score-low-text:     #ff9ab0;
+  --score-low-border:   rgba(255, 141, 161, 0.25);
+
+  --spinner-border:     rgba(255, 75, 130, 0.15);
+  --empty-heart:        rgba(255, 75, 130, 0.3);
+  --table-shadow:       rgba(0, 0, 0, 0.15);
+  --disclaimer-icon:    #ff7aaa;
+}
+
+/* Smooth theme transition on everything except animated elements */
+*, *::before, *::after {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.15s ease, box-shadow 0.25s ease;
+}

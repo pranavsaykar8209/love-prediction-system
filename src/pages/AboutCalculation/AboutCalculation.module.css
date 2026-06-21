@@ -1,8 +1,9 @@
 .page {
   min-height: 100vh;
   width: 100%;
-  background: linear-gradient(135deg, #fff3f6 0%, #f4efff 100%);
-  color: #3b2c40;
+  background: var(--page-bg);
+  background-attachment: fixed;
+  color: var(--text-primary);
   position: relative;
   overflow-x: hidden;
   font-family: 'Inter', sans-serif;
@@ -17,6 +18,9 @@
   filter: blur(120px);
   pointer-events: none;
   z-index: -2;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  will-change: filter;
 }
 
 .blobPink {
@@ -24,7 +28,7 @@
   left: -100px;
   width: 450px;
   height: 450px;
-  background: rgba(255, 182, 193, 0.45);
+  background: var(--blob-pink);
 }
 
 .blobPurple {
@@ -32,7 +36,7 @@
   right: -150px;
   width: 500px;
   height: 500px;
-  background: rgba(162, 85, 235, 0.2);
+  background: var(--blob-purple);
 }
 
 .blobLavender {
@@ -40,7 +44,7 @@
   left: 10%;
   width: 450px;
   height: 450px;
-  background: rgba(230, 230, 250, 0.6);
+  background: var(--blob-lavender);
 }
 
 
@@ -94,7 +98,7 @@
   font-family: 'Inter', sans-serif;
   font-size: 1.2rem;
   line-height: 1.65;
-  color: #5c4a60;
+  color: var(--text-secondary-alt);
   margin: 0 0 36px 0;
   max-width: 650px;
 }
@@ -139,11 +143,11 @@
 }
 
 .formulaCard {
-  background: #ffffff;
+  background: var(--formula-bg);
   border-radius: 24px;
   padding: 48px;
-  box-shadow: 0 12px 40px rgba(255, 200, 210, 0.25);
-  border: 1px solid rgba(255, 192, 203, 0.3);
+  box-shadow: 0 12px 40px var(--card-shadow);
+  border: 1px solid var(--card-border);
   max-width: 800px;
   margin: 0 auto;
   display: flex;
@@ -172,7 +176,7 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #fff0f3 0%, #f4efff 100%);
+  background: var(--formula-bubble-bg);
   border: 2px solid rgba(255, 75, 130, 0.25);
   display: flex;
   justify-content: center;
@@ -188,7 +192,7 @@
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #705b76;
+  color: var(--text-secondary);
   text-align: center;
 }
 
@@ -201,7 +205,7 @@
 }
 
 .formulaTextContainer {
-  background: #fff0f3;
+  background: var(--formula-text-bg);
   border-radius: 16px;
   padding: 18px 28px;
   display: flex;
@@ -239,11 +243,11 @@
 }
 
 .credibilityCard {
-  background: #ffffff;
+  background: var(--credibility-bg);
   border-radius: 20px;
   padding: 24px 28px;
-  box-shadow: 0 8px 30px rgba(255, 200, 210, 0.15);
-  border: 1px solid rgba(255, 192, 203, 0.25);
+  box-shadow: 0 8px 30px var(--card-shadow);
+  border: 1px solid var(--card-border);
   display: flex;
   align-items: center;
   transition: transform 0.2s ease, border-color 0.2s ease;
@@ -258,7 +262,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #f4efff;
+  background: var(--credibility-icon-bg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -276,14 +280,14 @@
   font-family: 'Outfit', sans-serif;
   font-weight: 600;
   font-size: 1.15rem;
-  color: #3b2c40;
+  color: var(--text-primary);
   margin: 0 0 4px 0;
 }
 
 .credibilityItemDesc {
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
-  color: #705b76;
+  color: var(--text-secondary);
   margin: 0;
   line-height: 1.5;
 }
@@ -301,11 +305,11 @@
 .disclaimerContainer {
   max-width: 600px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--disclaimer-bg);
   border-radius: 20px;
   padding: 20px 28px;
-  box-shadow: 0 8px 30px rgba(255, 200, 210, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 30px var(--card-shadow);
+  border: 1px solid var(--disclaimer-border);
   text-align: center;
 }
 
@@ -327,7 +331,7 @@
 .disclaimerText {
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
-  color: #8d7993;
+  color: var(--text-muted);
   line-height: 1.6;
   margin: 10px 0 0 0;
 }
