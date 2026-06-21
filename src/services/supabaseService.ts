@@ -60,8 +60,8 @@ export const getLocalFallbackResult = (
   const { message, paragraph } = getRandomText(score);
 
   return {
-    your_name: normalizedYourName,
-    crush_name: normalizedCrushName,
+    your_name: cleanYour,
+    crush_name: cleanCrush,
     score,
     message,
     paragraph,
@@ -141,13 +141,13 @@ export const getOrCreateLoveResult = (
     // If Supabase client is not available (e.g., missing env variables), use local fallback
     if (!supabase) {
       console.warn('Supabase is not initialized. Using local fallback.');
-      const existing = findLocalResult(normalizedYourName, normalizedCrushName);
+      const existing = findLocalResult(cleanYour, cleanCrush);
       if (existing) {
         const { message, paragraph } = getRandomText(existing.score);
         return {
           id: existing.id,
-          your_name: normalizedYourName,
-          crush_name: normalizedCrushName,
+          your_name: cleanYour,
+          crush_name: cleanCrush,
           score: existing.score,
           message,
           paragraph,
@@ -163,15 +163,15 @@ export const getOrCreateLoveResult = (
 
     try {
       // 1. GET: Check for existing record in its dedicated file
-      const existingRecord = await searchExistingResult(normalizedYourName, normalizedCrushName);
+      const existingRecord = await searchExistingResult(cleanYour, cleanCrush);
 
       if (existingRecord) {
         const { message, paragraph } = getRandomText(existingRecord.score);
 
         return {
           id: existingRecord.id,
-          your_name: normalizedYourName,
-          crush_name: normalizedCrushName,
+          your_name: cleanYour,
+          crush_name: cleanCrush,
           score: existingRecord.score,
           message,
           paragraph,
@@ -191,14 +191,14 @@ export const getOrCreateLoveResult = (
         score = Math.floor(Math.random() * (maxScore - minScore + 1)) + minScore;
       }
 
-      const newRecord = await storeNewResult(normalizedYourName, normalizedCrushName, score);
+      const newRecord = await storeNewResult(cleanYour, cleanCrush, score);
 
       const { message, paragraph } = getRandomText(newRecord.score);
 
       return {
         id: newRecord.id,
-        your_name: normalizedYourName,
-        crush_name: normalizedCrushName,
+        your_name: cleanYour,
+        crush_name: cleanCrush,
         score: newRecord.score,
         message,
         paragraph,
@@ -206,13 +206,13 @@ export const getOrCreateLoveResult = (
       };
     } catch (error) {
       console.error('Supabase query/insert failed. Using local fallback:', error);
-      const existing = findLocalResult(normalizedYourName, normalizedCrushName);
+      const existing = findLocalResult(cleanYour, cleanCrush);
       if (existing) {
         const { message, paragraph } = getRandomText(existing.score);
         return {
           id: existing.id,
-          your_name: normalizedYourName,
-          crush_name: normalizedCrushName,
+          your_name: cleanYour,
+          crush_name: cleanCrush,
           score: existing.score,
           message,
           paragraph,

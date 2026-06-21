@@ -16,8 +16,7 @@ export const searchExistingResult = async (
   const { data, error } = await supabase
     .from('love_results')
     .select('*')
-    .eq('your_name', normalizedYourName)
-    .eq('crush_name', normalizedCrushName)
+    .or(`and(your_name.eq.${normalizedYourName},crush_name.eq.${normalizedCrushName}),and(your_name.eq.${normalizedCrushName},crush_name.eq.${normalizedYourName})`)
     .order('created_at', { ascending: true })
     .limit(1);
 
