@@ -63,9 +63,9 @@ const ResultWrapper: React.FC = () => {
   }
   
   const handleAnalyzeAnother = () => {
-    sessionStorage.removeItem('yourName');
-    sessionStorage.removeItem('crushName');
-    navigate('/calculator');
+    // Keep names in sessionStorage and pass them as navigation state
+    // so CalculatorForm can pre-fill the last-used values
+    navigate('/calculator', { state: { yourName, crushName } });
   };
   
   return (

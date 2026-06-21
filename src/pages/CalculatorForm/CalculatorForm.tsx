@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import FloatingHearts from '../../components/FloatingHearts/FloatingHearts';
 import HeartIcon from '../../components/HeartIcon/HeartIcon';
@@ -8,9 +9,12 @@ import styles from './CalculatorForm.module.css';
 import type { CalculatorFormProps, FormInputConfig } from '../../types';
 
 const CalculatorForm: React.FC<CalculatorFormProps> = ({ onHomeNavigate, onSubmit, onHistoryNavigate }) => {
-  // Initialize state based on JSON input configuration dynamically
+  const location = useLocation();
+  const prefill = location.state as { yourName?: string; crushName?: string } | null;
+
+  // Initialize from JSON config, but seed any values passed via navigation state
   const initialValues = formData.inputs.reduce((acc, input) => {
-    acc[input.name] = '';
+    acc[input.name] = prefill?.[input.name as 'yourName' | 'crushName'] ?? '';
     return acc;
   }, {} as Record<string, string>);
 

@@ -161,7 +161,7 @@
   align-items: center;
   gap: 10px;
   flex: 1;
-  min-width: 280px;
+  min-width: 0;
 }
 
 .searchContainer {
@@ -229,6 +229,47 @@
 .searchButton:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(255, 75, 130, 0.3);
+}
+
+/* Refresh icon button */
+.refreshButton {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 192, 203, 0.5);
+  background: rgba(255, 245, 248, 0.8);
+  color: #8d7993;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.refreshButton:hover:not(:disabled) {
+  background: rgba(255, 220, 230, 0.6);
+  border-color: rgba(255, 75, 130, 0.35);
+  color: #ff4b82;
+  transform: translateY(-1px);
+}
+
+.refreshButton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.refreshButton svg {
+  transition: transform 0.3s ease;
+}
+
+.refreshSpin svg {
+  animation: spinIcon 0.8s linear infinite;
+}
+
+@keyframes spinIcon {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 .bulkDeleteButton {
@@ -620,7 +661,80 @@
   margin: 10px 0 0 0;
 }
 
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 20px 0 4px;
+  flex-wrap: wrap;
+}
+
+.pageBtn {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 192, 203, 0.5);
+  background: rgba(255, 245, 248, 0.8);
+  color: #5c4a60;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.pageBtn:hover:not(:disabled) {
+  background: rgba(255, 220, 230, 0.7);
+  border-color: rgba(255, 75, 130, 0.35);
+  color: #3b2c40;
+  transform: translateY(-1px);
+}
+
+.pageBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+  transform: none;
+}
+
+.pageBtnActive {
+  background: linear-gradient(135deg, #ff4b82 0%, #a255eb 100%) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 3px 10px rgba(255, 75, 130, 0.3);
+}
+
+.pageEllipsis {
+  font-size: 1rem;
+  color: #bfaec4;
+  padding: 0 4px;
+  user-select: none;
+}
+
+.pageInfo {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #8d7993;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .pageInfo {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+  }
+}
+
 /* Animations */
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
@@ -638,18 +752,25 @@
   }
 
   .actionBar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
   }
 
+  /* Search form fills available width, other buttons stay fixed */
   .searchForm {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .refreshButton {
+    flex: 0 0 auto;
   }
 
   .bulkDeleteButton {
-    justify-content: center;
-    width: 100%;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 12px 14px;
   }
 
   .table td, .table th {
