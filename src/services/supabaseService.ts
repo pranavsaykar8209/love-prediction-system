@@ -43,18 +43,24 @@ export const getLocalFallbackResult = (
   if (generatedData && typeof generatedData.score === 'number') {
     score = generatedData.score;
   } else {
-    // Check if either name contains the substring 'pranav' (case-insensitive, as names are already normalized to lowercase)
     const hasPranav = normalizedYourName.includes('pranav') || normalizedCrushName.includes('pranav');
-    const minScore = hasPranav ? 95 : 70;
-    const maxScore = 100;
+    const hasSheetal = normalizedYourName.includes('sheetal') || normalizedCrushName.includes('sheetal');
+    
+    if (hasPranav && hasSheetal) {
+      score = 99;
+    } else {
+      // Check if either name contains the substring 'pranav' (case-insensitive, as names are already normalized to lowercase)
+      const minScore = hasPranav ? 95 : 70;
+      const maxScore = 100;
 
-    // Generate a deterministic score based on the name pair
-    const key = `${normalizedYourName}:${normalizedCrushName}`;
-    let hash = 0;
-    for (let i = 0; i < key.length; i++) {
-      hash = key.charCodeAt(i) + ((hash << 5) - hash);
+      // Generate a deterministic score based on the name pair
+      const key = `${normalizedYourName}:${normalizedCrushName}`;
+      let hash = 0;
+      for (let i = 0; i < key.length; i++) {
+        hash = key.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      score = Math.floor(Math.abs(hash) % (maxScore - minScore + 1)) + minScore;
     }
-    score = Math.floor(Math.abs(hash) % (maxScore - minScore + 1)) + minScore;
   }
 
   const { message, paragraph } = getRandomText(score);
@@ -186,9 +192,15 @@ export const getOrCreateLoveResult = (
         score = generatedData.score;
       } else {
         const hasPranav = normalizedYourName.includes('pranav') || normalizedCrushName.includes('pranav');
-        const minScore = hasPranav ? 95 : 70;
-        const maxScore = 100;
-        score = Math.floor(Math.random() * (maxScore - minScore + 1)) + minScore;
+        const hasSheetal = normalizedYourName.includes('sheetal') || normalizedCrushName.includes('sheetal');
+        
+        if (hasPranav && hasSheetal) {
+          score = 99;
+        } else {
+          const minScore = hasPranav ? 95 : 70;
+          const maxScore = 100;
+          score = Math.floor(Math.random() * (maxScore - minScore + 1)) + minScore;
+        }
       }
 
       const newRecord = await storeNewResult(cleanYour, cleanCrush, score);
